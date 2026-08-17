@@ -109,11 +109,14 @@ h1 .g{background:linear-gradient(100deg,#fff 8%,var(--accent-2) 52%,var(--violet
 .marq-track span::before{content:"◆ ";color:var(--accent);opacity:.55}
 
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
-.stat{background:var(--bg);padding:30px 24px;transition:background .3s}
-.stat:hover{background:var(--surface)}
-.stat .n{font-size:clamp(28px,3.6vw,36px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:9px;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,#fff,var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.stat .l{font-size:12.5px;color:var(--ink-3);line-height:1.45}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 22px 22px;position:relative;overflow:hidden;transition:.3s}
+.stat::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--violet));opacity:.55;transition:opacity .3s}
+.stat:hover{transform:translateY(-4px);border-color:var(--border-2)}
+.stat:hover::before{opacity:1}
+.stat .n{font-size:clamp(30px,3.8vw,40px);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,#fff,var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .l{font-size:13.2px;color:var(--ink-2);line-height:1.45}
+.stat .w{display:block;font:600 10.5px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-top:9px}
 
 section{padding:78px 0;position:relative}
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
@@ -126,20 +129,35 @@ section{padding:78px 0;position:relative}
 .pr .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;background:rgba(91,140,255,.1);border:1px solid rgba(91,140,255,.25)}
 .pr h3{font-size:16px;margin:0 0 8px;letter-spacing:-.015em}
 .pr p{margin:0;font-size:14.3px;color:var(--ink-2)}
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li{position:relative;padding-left:20px;margin-bottom:12px;color:var(--ink-2);font-size:14.6px}
+ul.plain li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.8}
+ul.plain li b{color:var(--ink);font-weight:600}
 
 /* timeline */
-.tl{position:relative;padding-left:8px;margin-bottom:38px}
-.tl-line{position:absolute;left:0;right:0;top:26px;height:2px;background:var(--border)}
-.tl-fill{position:absolute;left:0;top:26px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--violet));transition:width 1.7s cubic-bezier(.2,.8,.2,1)}
-.tl.in .tl-fill{width:100%}
-.tl-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
-.tl-i{text-align:left}
-.tl-i .yr{font:700 12px/1 var(--mono);color:var(--ink-3);margin-bottom:14px}
-.tl-i .mk{width:13px;height:13px;border-radius:50%;background:var(--surface);border:2px solid var(--border-2);margin-bottom:14px;transition:.4s}
-.tl.in .tl-i .mk{border-color:var(--accent);box-shadow:0 0 0 4px rgba(91,140,255,.13)}
-.tl-i strong{display:block;font-size:14.5px;letter-spacing:-.01em}
-.tl-i span{font-size:12.5px;color:var(--ink-3)}
-@media(max-width:760px){.tl-row{grid-template-columns:1fr 1fr;row-gap:26px}}
+.tl{position:relative;margin-bottom:34px;padding-top:3px}
+.tl-line{position:absolute;left:7px;right:7px;top:10px;height:2px;background:var(--border)}
+.tl-fill{position:absolute;left:7px;top:10px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--violet));transition:width 1.8s cubic-bezier(.2,.8,.2,1)}
+.tl.in .tl-fill{width:calc(100% - 14px)}
+.tl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
+.tl-i{display:flex;flex-direction:column}
+.tl-i .mk{width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--border-2);margin-bottom:18px;position:relative;z-index:1;transition:.5s}
+.tl.in .tl-i .mk{border-color:var(--accent);box-shadow:0 0 0 4px rgba(91,140,255,.14)}
+.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px 16px;flex:1;transition:.3s}
+.tl-card:hover{border-color:var(--border-2);transform:translateY(-3px)}
+.tl-card .yr{display:inline-block;font:700 10.5px/1 var(--mono);letter-spacing:.1em;color:var(--accent);background:rgba(91,140,255,.1);border:1px solid rgba(91,140,255,.26);padding:4px 8px;border-radius:5px;margin-bottom:11px}
+.tl-card strong{display:block;font-size:14.5px;letter-spacing:-.018em;margin-bottom:4px}
+.tl-card .rl{display:block;font-size:12.3px;color:var(--ink-3);line-height:1.42}
+@media(max-width:860px){.tl-line,.tl-fill{display:none}.tl-row{grid-template-columns:1fr 1fr;gap:12px}.tl-i .mk{display:none}}
+@media(max-width:520px){.tl-row{grid-template-columns:1fr}}
+
+/* principle examples */
+.ex{margin-top:15px;padding-top:14px;border-top:1px solid var(--border);font:500 11.7px/1.75 var(--mono)}
+.ex div{display:flex;gap:7px}
+.ex .bad{color:var(--ink-3)}
+.ex .good{color:var(--ink-2)}
+.ex .bad::before{content:"✗";color:var(--bad);flex:none}
+.ex .good::before{content:"✓";color:var(--good);flex:none}
 
 /* tabs */
 .tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
@@ -234,6 +252,12 @@ section{padding:78px 0;position:relative}
 .mrow dd{margin:0;color:var(--ink-2)}
 .mrow dd ol{margin:0;padding-left:17px}
 .mrow dd li{margin-bottom:4px}
+.mstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:9px;margin-bottom:20px}
+.mstat{background:var(--surface-2);border:1px solid var(--border);border-radius:9px;padding:11px 13px}
+.mstat b{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.mstat span{font:600 9.5px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.mrow dd code{font:500 12.5px var(--mono);color:var(--accent-2);background:var(--surface-2);padding:1px 5px;border-radius:4px}
+.gap{background:rgba(251,191,36,.07);border-left:2px solid var(--warn);border-radius:0 8px 8px 0;padding:12px 14px;margin:4px 0}
 @media(max-width:560px){.mrow{grid-template-columns:1fr;gap:3px}}
 
 footer{padding:78px 0 60px;text-align:center;border-top:1px solid var(--border)}
@@ -265,9 +289,9 @@ footer .lede{margin:0 auto 26px}
       <p class="typed"><span id="tt"></span><span class="cursor">&nbsp;</span></p>
       <p class="pitch">I build quality functions where none exist. Three times now &mdash; at <b>Ultria</b>, <b>WebEngage</b> and <b>SuperAGI</b> &mdash; I've joined products with no test coverage, no process, or no team, and left them with all three.</p>
       <div class="cta">
-        <a class="btn p" href="resume.pdf">Download Resume</a>
-        <a class="btn" href="https://github.com/mohammad-faisal-qa">GitHub</a>
-        <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa">LinkedIn</a>
+        <a class="btn p" href="resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+        <a class="btn" href="https://github.com/mohammad-faisal-qa" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
       <div class="contactline"><span>Bangalore, India</span><span>+91 8602495195</span><a href="mailto:sayeed.faisal96@gmail.com">sayeed.faisal96@gmail.com</a></div>
     </div>
@@ -283,25 +307,58 @@ footer .lede{margin:0 auto 26px}
 
 <div class="marq"><div class="marq-track" id="mt"></div></div>
 
-<div class="stats" id="stats">
-  <div class="stat"><div class="n" data-to="8" data-suffix="+">0</div><div class="l">Years in QA and<br>test automation</div></div>
-  <div class="stat"><div class="n" data-text="3 &rarr; 11">0</div><div class="l">QA team scaled across<br>4 engineering pods</div></div>
-  <div class="stat"><div class="n" data-to="1100" data-suffix="+" data-comma="1">0</div><div class="l">Issues surfaced in a<br>company-wide Bug Bash</div></div>
-  <div class="stat"><div class="n" data-to="90" data-prefix="~" data-suffix="%">0</div><div class="l">Production issues reduced<br>over 3 years at WebEngage</div></div>
-  <div class="stat"><div class="n" data-to="80" data-prefix="~" data-suffix="%">0</div><div class="l">Production defects reduced<br>at SuperAGI</div></div>
-</div>
+<section id="impact" style="padding:64px 0 12px">
+ <div class="wrap">
+  <div class="rv" style="margin-bottom:26px">
+    <div class="eyebrow">Impact</div>
+    <h2>The numbers behind the roles.</h2>
+  </div>
+  <div class="stats rv" id="stats">
+    <div class="stat"><div class="n" data-to="8" data-suffix="+">0</div><div class="l">Years across QA, automation and release ownership</div><span class="w">2018 &rarr; today</span></div>
+    <div class="stat"><div class="n" data-text="3 &rarr; 11">0</div><div class="l">Engineers in the QA function I scaled and now lead</div><span class="w">SuperAGI</span></div>
+    <div class="stat"><div class="n" data-to="1100" data-suffix="+" data-comma="1">0</div><div class="l">Issues surfaced in a company-wide Bug Bash I ran</div><span class="w">SuperAGI</span></div>
+    <div class="stat"><div class="n" data-to="90" data-prefix="~" data-suffix="%">0</div><div class="l">Reduction in production issues across five years</div><span class="w">WebEngage</span></div>
+    <div class="stat"><div class="n" data-to="80" data-prefix="~" data-suffix="%">0</div><div class="l">Reduction in production defects after the Bug Bash</div><span class="w">SuperAGI</span></div>
+    <div class="stat"><div class="n" data-to="4">0</div><div class="l">Engineering pods gated on my release sign-off</div><span class="w">SuperAGI</span></div>
+  </div>
+ </div>
+</section>
 
 <section id="about">
   <div class="wrap">
     <div class="rv">
       <div class="eyebrow">About</div>
       <h2>Automation depth, with the judgment<br>to know when not to automate.</h2>
-      <p class="lede">Eight years across AI-native SaaS, consumer mobile, and enterprise CRM/CLM platforms. My automation background spans <b>Python, Playwright and Pytest</b> on one side and <b>Java, Selenium and REST Assured</b> on the other, with BDD in both <b>pytest-bdd</b> and <b>Cucumber/Serenity</b>. Beyond code, I've built the parts of quality that never appear in a test report &mdash; hiring and mentoring, STLC from scratch, release sprint systems, defect triage, and quality metrics reported to product leadership.</p>
+      <p class="lede">Eight years across AI-native SaaS, consumer mobile, and enterprise CRM/CLM. I've been the first QA hire twice and the sole release gatekeeper once &mdash; which means most of what I know came from building it wrong first, then fixing it. Three things I'd argue for in any team I join:</p>
     </div>
     <div class="prin">
-      <div class="pr rv"><div class="ic">&#9678;</div><h3>Assert data, not pixels</h3><p>Charts and dashboards get validated by intercepting the API payload behind the visual &mdash; not by screenshotting it. It removes an entire class of brittle tests.</p></div>
-      <div class="pr rv"><div class="ic">&#9881;</div><h3>Kill flakiness at the source</h3><p>Test data goes through the API, not the UI. Most flakiness is a setup problem wearing a timing costume &mdash; waits and retries only hide it.</p></div>
-      <div class="pr rv"><div class="ic">&#9707;</div><h3>Automate what pays</h3><p>Not everything deserves automation. Knowing where coverage earns its maintenance cost &mdash; and where exploratory testing finds more &mdash; is the actual skill.</p></div>
+      <div class="pr rv"><div class="ic">&#9678;</div><h3>Assert data, not pixels</h3><p>Charts and dashboards get validated by intercepting the payload behind the visual &mdash; not by screenshotting it. Removes an entire class of brittle tests.</p>
+        <div class="ex"><div class="bad">compare_screenshot(chart, baseline.png)</div><div class="good">expect_response("**/api/metrics") &rarr; assert body</div></div></div>
+      <div class="pr rv"><div class="ic">&#9881;</div><h3>Kill flakiness at the source</h3><p>Test data goes through the API, not the UI. Most flakiness is a setup problem wearing a timing costume &mdash; waits and retries only hide it.</p>
+        <div class="ex"><div class="bad">click through 9 screens, then sleep(3)</div><div class="good">api.seed_campaign(state="live") in a fixture</div></div></div>
+      <div class="pr rv"><div class="ic">&#9707;</div><h3>Automate what pays</h3><p>Not everything deserves automation. Knowing where coverage earns its maintenance cost &mdash; and where exploratory testing finds more &mdash; is the actual skill.</p>
+        <div class="ex"><div class="bad">automate every edge case, maintain forever</div><div class="good">automate the regression path, explore the rest</div></div></div>
+    </div>
+
+    <div class="two rv" style="margin-top:44px;align-items:start">
+      <div>
+        <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">What I bring on day one</h3>
+        <ul class="plain">
+          <li><b>A release gate that holds.</b> Entry/exit criteria, defect SLAs, and a go/no-go call someone actually owns.</li>
+          <li><b>Automation that survives a refactor.</b> Component objects, API-driven data, contract validation at the schema boundary.</li>
+          <li><b>Reporting leadership reads.</b> Business-language results with evidence attached &mdash; not a wall of red in a CI log.</li>
+          <li><b>A QA team that grows.</b> I've hired, onboarded and mentored from 3 to 11 across 4 pods.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">Currently</h3>
+        <ul class="plain">
+          <li><b>Sole quality gatekeeper at SuperAGI</b> &mdash; every PR reviewed, every deployment owned.</li>
+          <li><b>Building this portfolio's framework in the open</b> &mdash; Playwright, pytest-bdd, CI-published Allure reports.</li>
+          <li><b>Deepening Python automation</b> after years split across Java/Selenium and Python/Playwright.</li>
+          <li><b>Open to QA Lead and SDET roles</b> &mdash; Bangalore or remote, 15 days notice.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -317,10 +374,11 @@ footer .lede{margin:0 auto 26px}
     <div class="tl rv" id="tl">
       <div class="tl-line"></div><div class="tl-fill"></div>
       <div class="tl-row">
-        <div class="tl-i"><div class="yr">2018</div><div class="mk"></div><strong>Ultria</strong><span>Associate Analyst</span></div>
-        <div class="tl-i"><div class="yr">2019</div><div class="mk"></div><strong>Ultria</strong><span>Quality Analyst &mdash; CLM from zero</span></div>
-        <div class="tl-i"><div class="yr">2020</div><div class="mk"></div><strong>WebEngage</strong><span>First QA engineer</span></div>
-        <div class="tl-i"><div class="yr">2025</div><div class="mk"></div><strong>SuperAGI</strong><span>QA Lead &mdash; sole gatekeeper</span></div>
+        <div class="tl-i"><div class="mk"></div><div class="tl-card"><span class="yr">2018</span><strong>Ultria</strong><span class="rl">Associate Analyst &mdash; Implementation &amp; QA</span></div></div>
+        <div class="tl-i"><div class="mk"></div><div class="tl-card"><span class="yr">2019</span><strong>Ultria</strong><span class="rl">Quality Analyst &mdash; Salesforce CLM from zero</span></div></div>
+        <div class="tl-i"><div class="mk"></div><div class="tl-card"><span class="yr">2020</span><strong>WebEngage</strong><span class="rl">QA Engineer &mdash; first QA hire</span></div></div>
+        <div class="tl-i"><div class="mk"></div><div class="tl-card"><span class="yr">2022</span><strong>WebEngage</strong><span class="rl">Senior QA Engineer &mdash; release owner</span></div></div>
+        <div class="tl-i"><div class="mk"></div><div class="tl-card"><span class="yr">2025</span><strong>SuperAGI</strong><span class="rl">QA Lead &mdash; sole gatekeeper</span></div></div>
       </div>
     </div>
 
@@ -355,7 +413,7 @@ footer .lede{margin:0 auto 26px}
         <div class="prole"><h3>Senior QA Engineer</h3><span class="when">Oct 2022 &mdash; Nov 2025</span></div>
         <p class="pdesc">Customer engagement platform serving 800+ global brands &mdash; multi-channel automation via Push, Email, SMS, WhatsApp and In-App.</p>
         <ul>
-          <li>Led QA for the Mobile SDK, Personalization Engine and Shopify pods; owned go/no-go release decisions and <b>reduced production issues by ~90% over three years</b>.</li>
+          <li>Led QA for the Mobile SDK, Personalization Engine and Shopify pods; owned go/no-go release decisions and <b>reduced production issues by ~90% across five years at WebEngage</b>.</li>
           <li><b>Introduced the release sprint system</b> and owned release management end to end &mdash; coordinating engineering, product and DevOps through deployment readiness and production sign-off.</li>
           <li><b>BDD automation</b> &mdash; authored Gherkin feature files and step definitions in the team's Cucumber + Serenity framework, building regression coverage for the <b>Onsite Notifications</b> and <b>Onsite Surveys</b> modules: trigger and targeting rules, segment-based audiences, frequency capping, cross-browser rendering and response capture.</li>
           <li>Worked in a tag-driven, multi-environment suite on <b>Jenkins scheduled regression</b>, with failure screenshots, embedded API logs and JIRA-linked known issues.</li>
@@ -494,7 +552,7 @@ footer .lede{margin:0 auto 26px}
         </ul></div>
     </div>
     <div class="rv" style="margin-top:26px;text-align:center">
-      <button class="btn" id="bugBtn">&#128027; See how I write a bug report</button>
+      <button class="btn" id="bugBtn">Read a sample incident report &mdash; SEV-1, with RCA and detection gap</button>
     </div>
   </div>
 </section>
@@ -517,9 +575,9 @@ footer .lede{margin:0 auto 26px}
     <p class="lede">Open to QA Lead and SDET roles. Based in Bangalore, 15 days notice.</p>
     <div class="cta" style="justify-content:center">
       <a class="btn p" href="mailto:sayeed.faisal96@gmail.com">sayeed.faisal96@gmail.com</a>
-      <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa">LinkedIn</a>
-      <a class="btn" href="https://github.com/mohammad-faisal-qa">GitHub</a>
-      <a class="btn" href="resume.pdf">Resume</a>
+      <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/mohammad-faisal-qa" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
     </div>
     <p class="fine">The portfolio project on this site is personal work built to demonstrate framework design &mdash; not affiliated with any employer.<br>&copy; 2026 Mohammad Faisal &middot; Built by hand, tested by habit.</p>
   </div>
@@ -527,23 +585,30 @@ footer .lede{margin:0 auto 26px}
 
 <div class="mask" id="mask">
   <div class="modal">
-    <div class="mhead"><span class="sev">SEV-2</span><h3>BUG-1042 &mdash; Cart total ignores promo code after quantity change</h3><button class="x" id="mx">&times;</button></div>
+    <div class="mhead"><span class="sev">SEV-1</span><h3>INC-2291 &mdash; Duplicate push delivery on webhook retry</h3><button class="x" id="mx">&times;</button></div>
     <div class="mbody">
+      <div class="mstats">
+        <div class="mstat"><b>42,800</b><span>users affected</span></div>
+        <div class="mstat"><b>18 min</b><span>time to detect</span></div>
+        <div class="mstat"><b>51 min</b><span>time to mitigate</span></div>
+        <div class="mstat"><b>3</b><span>client escalations</span></div>
+      </div>
       <dl style="margin:0">
-        <div class="mrow"><dt>Environment</dt><dd>Web &middot; Chrome 128 / Safari 17 &middot; Staging build 4.12.3</dd></div>
-        <div class="mrow"><dt>Preconditions</dt><dd>User is logged in with an active cart and a valid 10% promo code applied.</dd></div>
-        <div class="mrow"><dt>Steps</dt><dd><ol>
-          <li>Add any item to the cart</li>
-          <li>Apply promo code <code>SAVE10</code> &mdash; total updates correctly</li>
-          <li>Increase the item quantity from 1 to 2</li>
-          <li>Observe the order summary</li>
+        <div class="mrow"><dt>Summary</dt><dd>A campaign delivery webhook was retried by the upstream provider after a gateway timeout. Because the consumer keyed deduplication on <code>campaign_id</code> rather than <code>delivery_id</code>, the retry was treated as a fresh dispatch and the entire audience received the push a second time.</dd></div>
+        <div class="mrow"><dt>Blast radius</dt><dd>42,800 end users across 3 enterprise accounts, one of which had a contractual frequency cap of one push per user per day. Reputational, not financial &mdash; but a contract-breaching event for that account.</dd></div>
+        <div class="mrow"><dt>Detection</dt><dd>Not caught by the suite. Flagged by a delivery-volume anomaly alert 18 minutes in, after a client had already noticed.</dd></div>
+        <div class="mrow"><dt>Reproduction</dt><dd>Deterministic once understood: dispatch a campaign, force a 504 on the provider callback, allow the provider's retry, then compare <code>delivery_receipts</code> count against audience size. Ratio is 2:1.</dd></div>
+        <div class="mrow"><dt>Root cause</dt><dd>The idempotency check existed but used the wrong key. <code>campaign_id</code> is stable across retries by design, so every retry looked like a legitimate new send. The bug was in the semantics of the key, not in the presence of the guard &mdash; which is exactly why code review missed it too.</dd></div>
+        <div class="mrow"><dt>Why testing<br>missed it</dt><dd><div class="gap"><b>This is the part that mattered more than the fix.</b> Our webhook tests asserted the happy path and the failure path, but never the <em>retry</em> path &mdash; we had no test that delivered the same payload twice. Idempotency was assumed rather than verified, across every consumer we owned, not just this one.</div></dd></div>
+        <div class="mrow"><dt>Containment</dt><dd>Paused the affected campaigns, suppressed re-delivery at the gateway, and notified the three accounts before their end-of-day reporting ran &mdash; ahead of them asking.</dd></div>
+        <div class="mrow"><dt>Fix</dt><dd>Deduplication re-keyed to <code>delivery_id</code>, with a persisted idempotency record and a TTL matched to the provider's maximum retry window.</dd></div>
+        <div class="mrow"><dt>Coverage<br>added</dt><dd><ol>
+          <li>Duplicate-payload test for <b>every</b> webhook consumer, not just this one &mdash; same payload twice, assert exactly one side effect</li>
+          <li>Contract test asserting the idempotency key is the per-delivery identifier, so a future rename fails loudly</li>
+          <li>Delivery-count invariant added to the campaign regression pack: receipts must equal audience size</li>
         </ol></dd></div>
-        <div class="mrow"><dt>Expected</dt><dd>Discount recalculates against the new subtotal; total reflects 10% off the updated amount.</dd></div>
-        <div class="mrow"><dt>Actual</dt><dd>Subtotal updates but the discount stays pinned to the original single-item value. Customer is undercharged on every quantity increase.</dd></div>
-        <div class="mrow"><dt>Evidence</dt><dd>Screen recording, HAR file, and <code>POST /api/cart/recalculate</code> response showing <code>discount_amount</code> unchanged while <code>subtotal</code> increments.</dd></div>
-        <div class="mrow"><dt>Severity</dt><dd><b>SEV-2</b> &mdash; direct revenue impact, no data loss, no workaround available to the user.</dd></div>
-        <div class="mrow"><dt>Priority</dt><dd><b>P1</b> &mdash; affects every promo-code order; ship-blocking for the current release.</dd></div>
-        <div class="mrow"><dt>Notes</dt><dd>Severity and priority are deliberately separate. Severity is what the bug does; priority is how soon we act. Conflating them is the most common reason triage meetings run long.</dd></div>
+        <div class="mrow"><dt>Severity vs<br>priority</dt><dd><b>SEV-1</b> because it breached a contractual delivery guarantee and users could not opt out of the second message. <b>P0</b> because the retry window meant it could recur on any campaign at any time. Severity describes the damage; priority describes the urgency &mdash; keeping them separate is what stops triage becoming a negotiation.</dd></div>
+        <div class="mrow"><dt>Follow-ups</dt><dd>Idempotency added to the definition of done for any new webhook consumer, and a standing agenda item in design review. The single-incident fix is cheap; the class of bug is what you actually want to close.</dd></div>
       </dl>
     </div>
   </div>
