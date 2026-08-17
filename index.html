@@ -3,346 +3,647 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mohammad Faisal — QA Lead &amp; SDET</title>
-<meta name="description" content="QA Lead and SDET with 8+ years across AI-native SaaS, consumer mobile, and enterprise CRM platforms. Python, Playwright, Pytest, Java, Selenium, REST Assured.">
+<title>Mohammad Faisal &mdash; QA Lead &amp; SDET</title>
+<meta name="description" content="QA Lead and SDET, 8+ years. Python, Playwright, Pytest, Java, Selenium, REST Assured. I build quality functions where none exist.">
+<meta property="og:title" content="Mohammad Faisal — QA Lead & SDET">
+<meta property="og:description" content="8+ years building quality from zero. Python · Playwright · Pytest · Java · Selenium · REST Assured.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0b0d13; --surface:#12151e; --surface-2:#181c28; --border:#252a3a;
-  --ink:#e8eaf0; --ink-2:#a7aec2; --ink-3:#727a91;
-  --accent:#5b93ff; --accent-2:#8ab4ff; --good:#3ddc97;
-  --r:12px; --max:1060px;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --bg:#07090f; --surface:#0f1219; --surface-2:#151925; --border:#212636; --border-2:#2d344a;
+  --ink:#edeff5; --ink-2:#9ea6bb; --ink-3:#666e84;
+  --accent:#5b8cff; --accent-2:#93b6ff; --violet:#a78bfa; --teal:#2dd4bf; --pink:#f472b6;
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+  --max:1140px;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:var(--accent);text-decoration:none}
-a:hover{color:var(--accent-2)}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+::selection{background:rgba(91,140,255,.32)}
+h2{font-size:clamp(27px,3.6vw,38px);letter-spacing:-.035em;font-weight:800;margin:0 0 14px;line-height:1.12}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 11.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+.lede{color:var(--ink-2);max-width:64ch;margin:0 0 36px;font-size:16.5px}
+.lede b{color:var(--ink);font-weight:600}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;z-index:150;pointer-events:none;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--violet),var(--teal));z-index:200}
 
 /* nav */
-nav{position:sticky;top:0;z-index:60;background:rgba(11,13,19,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-in{max-width:var(--max);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:28px}
-.logo{font-weight:800;letter-spacing:-.02em;color:var(--ink);font-size:15px}
-.logo span{color:var(--accent)}
-.nav-links{margin-left:auto;display:flex;gap:22px}
-.nav-links a{color:var(--ink-2);font-size:14px;font-weight:500}
-.nav-links a:hover{color:var(--ink)}
-@media(max-width:720px){.nav-links{display:none}}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,.72);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.stuck{border-bottom-color:var(--border)}
+.nav-in{max-width:var(--max);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center}
+.logo{font-weight:900;letter-spacing:-.03em;font-size:17px;color:var(--ink)}
+.logo em{font-style:normal;color:var(--accent)}
+.nav-links{margin-left:auto;display:flex;gap:4px;align-items:center}
+.nav-links a{color:var(--ink-2);font-size:13.5px;font-weight:500;padding:7px 12px;border-radius:8px;transition:.2s}
+.nav-links a:hover{color:var(--ink);background:var(--surface-2)}
+.nav-links a.on{color:var(--accent-2);background:rgba(91,140,255,.11)}
+.nav-cta{margin-left:10px;padding:8px 15px!important;border:1px solid var(--border-2);color:var(--ink)!important}
+.nav-cta:hover{border-color:var(--accent)}
+@media(max-width:880px){.nav-links a:not(.nav-cta){display:none}}
 
 /* hero */
-header.hero{padding:72px 0 44px;border-bottom:1px solid var(--border)}
-.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
-h1{font-size:clamp(34px,5.4vw,52px);line-height:1.06;letter-spacing:-.035em;font-weight:800;margin:0 0 14px}
-.role{font-size:clamp(17px,2.4vw,21px);font-weight:600;color:var(--ink-2);margin:0 0 20px;letter-spacing:-.01em}
-.role b{color:var(--ink);font-weight:600}
-.pitch{font-size:17px;color:var(--ink-2);max-width:62ch;margin:0 0 28px}
-.pitch strong{color:var(--ink);font-weight:600}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:9px;font-size:14.5px;font-weight:600;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);transition:.15s}
-.btn:hover{background:var(--border);color:var(--ink);transform:translateY(-1px)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#08101f}
-.btn.primary:hover{background:var(--accent-2);color:#08101f}
-.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:var(--ink-3)}
-.meta a{color:var(--ink-3)}
-.meta a:hover{color:var(--accent)}
+.hero{position:relative;padding:74px 0 56px;overflow:hidden}
+.aurora{position:absolute;inset:0;z-index:0;pointer-events:none;filter:blur(96px);opacity:.52}
+.blob{position:absolute;border-radius:50%}
+.b1{width:540px;height:540px;background:radial-gradient(circle,#2b57d4,transparent 68%);top:-200px;left:-160px;animation:d1 23s ease-in-out infinite}
+.b2{width:450px;height:450px;background:radial-gradient(circle,#7c3aed,transparent 68%);top:-80px;right:-120px;animation:d2 27s ease-in-out infinite}
+.b3{width:400px;height:400px;background:radial-gradient(circle,#0d9488,transparent 68%);bottom:-220px;left:38%;animation:d3 31s ease-in-out infinite}
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(72px,52px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-62px,72px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(52px,-48px)}}
+.grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:58px 58px;opacity:.24;
+  mask-image:radial-gradient(ellipse 78% 58% at 50% 32%,#000 38%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 78% 58% at 50% 32%,#000 38%,transparent 100%)}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center}
+@media(max-width:960px){.hero-in{grid-template-columns:1fr;gap:34px}}
+
+.pill{display:inline-flex;align-items:center;gap:9px;padding:6px 13px;border-radius:999px;border:1px solid var(--border);background:rgba(21,25,37,.72);font:600 11.5px/1 var(--mono);letter-spacing:.06em;color:var(--ink-2);margin-bottom:22px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.55)}70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+h1{font-size:clamp(40px,6.6vw,68px);line-height:1.01;letter-spacing:-.048em;font-weight:900;margin:0 0 16px}
+h1 .g{background:linear-gradient(100deg,#fff 8%,var(--accent-2) 52%,var(--violet) 96%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.typed{font:600 clamp(15px,2.2vw,20px)/1.4 var(--mono);color:var(--accent-2);min-height:1.5em;margin:0 0 20px}
+.cursor{display:inline-block;width:9px;background:var(--accent);margin-left:2px;animation:blink 1.05s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.pitch{font-size:16.5px;color:var(--ink-2);max-width:54ch;margin:0 0 28px}
+.pitch b{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-size:14.5px;font-weight:600;border:1px solid var(--border-2);background:var(--surface-2);color:var(--ink);cursor:pointer;font-family:var(--sans);transition:.22s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 10px 26px -12px rgba(91,140,255,.7)}
+.btn.p{background:linear-gradient(100deg,var(--accent),#4a7bf0);border-color:transparent;color:#04070e}
+.contactline{display:flex;flex-wrap:wrap;gap:6px 18px;font:500 12.5px/1 var(--mono);color:var(--ink-3)}
+.contactline a{color:var(--ink-3)}.contactline a:hover{color:var(--accent)}
+
+/* terminal */
+.term{background:#0a0d14;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 30px 70px -28px rgba(0,0,0,.95);transform:perspective(1100px) rotateY(-5deg) rotateX(2deg);transition:transform .5s}
+.term:hover{transform:perspective(1100px) rotateY(0) rotateX(0)}
+@media(max-width:960px){.term{transform:none}}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#121622;border-bottom:1px solid var(--border)}
+.tdot{width:11px;height:11px;border-radius:50%}
+.term-title{margin-left:8px;font:500 11.5px/1 var(--mono);color:var(--ink-3)}
+.term-body{padding:15px;font:400 12.2px/1.85 var(--mono);height:268px;overflow:hidden;white-space:pre-wrap}
+.t-dim{color:var(--ink-3)}.t-ok{color:var(--good)}.t-ac{color:var(--accent-2)}.t-vi{color:var(--violet)}.t-wn{color:var(--warn)}
+
+/* marquee */
+.marq{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);overflow:hidden;padding:15px 0;position:relative}
+.marq::before,.marq::after{content:"";position:absolute;top:0;bottom:0;width:110px;z-index:2}
+.marq::before{left:0;background:linear-gradient(90deg,var(--surface),transparent)}
+.marq::after{right:0;background:linear-gradient(-90deg,var(--surface),transparent)}
+.marq-track{display:flex;gap:38px;width:max-content;animation:scroll 34s linear infinite}
+.marq:hover .marq-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marq-track span{font:600 13.5px/1 var(--mono);color:var(--ink-3);white-space:nowrap;letter-spacing:.02em}
+.marq-track span::before{content:"◆ ";color:var(--accent);opacity:.55}
 
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
-.stat{background:var(--bg);padding:26px 22px}
-.stat .n{font-size:clamp(26px,3.4vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:7px;font-variant-numeric:tabular-nums}
-.stat .l{font-size:12.5px;color:var(--ink-3);line-height:1.4}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
+.stat{background:var(--bg);padding:30px 24px;transition:background .3s}
+.stat:hover{background:var(--surface)}
+.stat .n{font-size:clamp(28px,3.6vw,36px);font-weight:900;letter-spacing:-.035em;line-height:1;margin-bottom:9px;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,#fff,var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .l{font-size:12.5px;color:var(--ink-3);line-height:1.45}
 
-/* sections */
-section{padding:60px 0;border-bottom:1px solid var(--border)}
-.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
-h2{font-size:24px;letter-spacing:-.025em;font-weight:700;margin:0}
-.sec-note{font-size:13.5px;color:var(--ink-3)}
-.lede{color:var(--ink-2);max-width:66ch;margin:0 0 30px;font-size:16px}
+section{padding:78px 0;position:relative}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
 
-/* experience */
-.job{border-left:2px solid var(--border);padding:0 0 34px 24px;position:relative}
-.job:last-child{padding-bottom:0}
-.job::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
-.job-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:4px}
-.co{font-size:19px;font-weight:700;letter-spacing:-.02em}
-.dates{font:500 12.5px/1 var(--mono);color:var(--ink-3);margin-left:auto}
-@media(max-width:640px){.dates{margin-left:0}}
-.co-desc{font-size:13.5px;color:var(--ink-3);font-style:italic;margin:0 0 14px;max-width:70ch}
-.title{font-size:15px;font-weight:600;color:var(--accent-2);margin:16px 0 10px}
-.job ul{margin:0;padding-left:18px}
-.job li{margin-bottom:9px;color:var(--ink-2);font-size:14.5px}
-.job li strong{color:var(--ink);font-weight:600}
-.job li::marker{color:var(--ink-3)}
+/* principles */
+.prin{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:16px}
+.pr{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:.3s}
+.pr:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.pr .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;background:rgba(91,140,255,.1);border:1px solid rgba(91,140,255,.25)}
+.pr h3{font-size:16px;margin:0 0 8px;letter-spacing:-.015em}
+.pr p{margin:0;font-size:14.3px;color:var(--ink-2)}
+
+/* timeline */
+.tl{position:relative;padding-left:8px;margin-bottom:38px}
+.tl-line{position:absolute;left:0;right:0;top:26px;height:2px;background:var(--border)}
+.tl-fill{position:absolute;left:0;top:26px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--violet));transition:width 1.7s cubic-bezier(.2,.8,.2,1)}
+.tl.in .tl-fill{width:100%}
+.tl-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.tl-i{text-align:left}
+.tl-i .yr{font:700 12px/1 var(--mono);color:var(--ink-3);margin-bottom:14px}
+.tl-i .mk{width:13px;height:13px;border-radius:50%;background:var(--surface);border:2px solid var(--border-2);margin-bottom:14px;transition:.4s}
+.tl.in .tl-i .mk{border-color:var(--accent);box-shadow:0 0 0 4px rgba(91,140,255,.13)}
+.tl-i strong{display:block;font-size:14.5px;letter-spacing:-.01em}
+.tl-i span{font-size:12.5px;color:var(--ink-3)}
+@media(max-width:760px){.tl-row{grid-template-columns:1fr 1fr;row-gap:26px}}
+
+/* tabs */
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:11px 18px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--ink-2);font:600 14px var(--sans);cursor:pointer;transition:.2s;text-align:left}
+.tab:hover{color:var(--ink);border-color:var(--border-2)}
+.tab.on{background:rgba(91,140,255,.12);border-color:var(--accent);color:var(--accent-2)}
+.tab small{display:block;font:500 11px/1.4 var(--mono);color:var(--ink-3);margin-top:3px}
+.tab.on small{color:var(--accent)}
+.panel{display:none;animation:fade .45s cubic-bezier(.2,.8,.2,1)}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.prole{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px}
+.prole h3{font-size:19px;margin:0;letter-spacing:-.02em}
+.prole .when{font:500 12.5px/1 var(--mono);color:var(--ink-3);margin-left:auto}
+.pdesc{font-size:13.5px;color:var(--ink-3);font-style:italic;margin:0 0 18px;max-width:72ch}
+.pcard ul{margin:0 0 4px;padding-left:0;list-style:none}
+.pcard li{position:relative;padding-left:22px;margin-bottom:11px;color:var(--ink-2);font-size:14.8px}
+.pcard li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:2px;background:var(--accent);opacity:.78}
+.pcard li b{color:var(--ink);font-weight:600}
+.sub{font:700 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:22px 0 12px;padding-top:18px;border-top:1px solid var(--border)}
+.tech{display:flex;flex-wrap:wrap;gap:6px}
+.tech span{font:500 12px/1 var(--mono);padding:6px 10px;border-radius:6px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink-2)}
+
+/* pyramid + coverage */
+.two{display:grid;grid-template-columns:.95fr 1.05fr;gap:36px;align-items:center}
+@media(max-width:900px){.two{grid-template-columns:1fr;gap:26px}}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:8px}
+.lvl{position:relative;border-radius:8px;padding:15px 18px;text-align:center;border:1px solid var(--border-2);transition:.35s cubic-bezier(.2,.8,.2,1);cursor:default;opacity:0;transform:scale(.9)}
+.pyr.in .lvl{opacity:1;transform:none}
+.pyr.in .lvl:nth-child(1){transition-delay:.05s}
+.pyr.in .lvl:nth-child(2){transition-delay:.2s}
+.pyr.in .lvl:nth-child(3){transition-delay:.35s}
+.lvl:hover{transform:translateY(-3px) scale(1.02);border-color:var(--accent)}
+.lvl b{display:block;font-size:14.5px;letter-spacing:-.01em}
+.lvl span{font:500 11.5px/1 var(--mono);color:var(--ink-3)}
+.l1{width:46%;background:linear-gradient(135deg,rgba(244,114,182,.16),rgba(244,114,182,.05))}
+.l2{width:72%;background:linear-gradient(135deg,rgba(167,139,250,.16),rgba(167,139,250,.05))}
+.l3{width:100%;background:linear-gradient(135deg,rgba(91,140,255,.16),rgba(91,140,255,.05))}
+.cov{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cv{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:15px;transition:.25s}
+.cv:hover{border-color:var(--border-2);transform:translateY(-2px)}
+.cv b{display:block;font-size:13.8px;margin-bottom:3px}
+.cv span{font-size:12px;color:var(--ink-3)}
 
 /* skills */
-.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
-.skill-card h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin:0 0 12px;font-weight:700}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;transition:.3s}
+.scard:hover{border-color:var(--border-2);transform:translateY(-3px)}
+.scard h3{font:700 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font:500 12.5px/1 var(--sans);padding:6px 10px;border-radius:6px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink-2)}
-.chip.hi{border-color:rgba(91,147,255,.42);color:var(--accent-2);background:rgba(91,147,255,.08)}
+.chip{font:500 12.5px/1 var(--sans);padding:7px 11px;border-radius:7px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink-2);transition:.2s}
+.chip:hover{color:var(--ink);border-color:var(--border-2);transform:translateY(-1px)}
+.chip.hi{border-color:rgba(91,140,255,.45);color:var(--accent-2);background:rgba(91,140,255,.09)}
 
-/* project */
-.proj{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:16px}
-.proj-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:6px}
-.proj h3{font-size:18px;margin:0;letter-spacing:-.02em}
-.badge{font:700 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:5px}
-.badge.wip{background:rgba(255,193,7,.12);color:#f5c451;border:1px solid rgba(255,193,7,.3)}
-.badge.live{background:rgba(61,220,151,.12);color:var(--good);border:1px solid rgba(61,220,151,.3)}
-.stack{font:500 12.5px/1.6 var(--mono);color:var(--ink-3);margin:8px 0 16px}
-.proj ul{margin:0;padding-left:18px}
-.proj li{margin-bottom:8px;color:var(--ink-2);font-size:14.5px}
-.proj li strong{color:var(--ink);font-weight:600}
+/* work */
+.pjgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.pj{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:.3s}
+.pj::after{content:"";position:absolute;inset:0;background:radial-gradient(480px circle at var(--mx,50%) var(--my,0%),rgba(91,140,255,.1),transparent 42%);opacity:0;transition:opacity .35s;pointer-events:none}
+.pj:hover::after{opacity:1}
+.pj:hover{transform:translateY(-4px);border-color:var(--border-2)}
+.pj-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.pj h3{font-size:17px;margin:0;letter-spacing:-.02em}
+.badge{font:700 10px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;padding:5px 8px;border-radius:5px;margin-left:auto;white-space:nowrap;background:rgba(251,191,36,.13);color:var(--warn);border:1px solid rgba(251,191,36,.32)}
+.pj .st{font:500 11.8px/1.6 var(--mono);color:var(--ink-3);margin:0 0 14px}
+.pj ul{margin:0;padding-left:0;list-style:none}
+.pj li{position:relative;padding-left:18px;margin-bottom:8px;color:var(--ink-2);font-size:14px}
+.pj li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--violet);opacity:.85}
+.pj li b{color:var(--ink);font-weight:600}
 
-/* contact */
-footer{padding:52px 0 60px;text-align:center}
-footer h2{margin-bottom:10px}
-footer p{color:var(--ink-2);margin:0 auto 24px;max-width:48ch}
-.disclosure{margin-top:44px;font-size:12.5px;color:var(--ink-3);line-height:1.6}
+/* education */
+.edu{display:flex;flex-wrap:wrap;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 24px}
+.edu .cap{font-size:26px}
+.edu b{display:block;font-size:15.5px;letter-spacing:-.015em}
+.edu span{font-size:13px;color:var(--ink-3)}
+.edu .yr{margin-left:auto;font:600 12.5px/1 var(--mono);color:var(--ink-3)}
+
+/* modal */
+.mask{position:fixed;inset:0;background:rgba(3,5,10,.8);backdrop-filter:blur(6px);z-index:300;display:flex;align-items:center;justify-content:center;padding:22px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mask.on{opacity:1;pointer-events:auto}
+.modal{background:var(--surface);border:1px solid var(--border-2);border-radius:16px;max-width:620px;width:100%;max-height:86vh;overflow:auto;transform:translateY(18px) scale(.97);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.mask.on .modal{transform:none}
+.mhead{display:flex;align-items:center;gap:10px;padding:18px 22px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface)}
+.mhead h3{margin:0;font-size:16px;letter-spacing:-.02em}
+.sev{font:700 10px/1 var(--mono);letter-spacing:.08em;padding:5px 8px;border-radius:5px;background:rgba(248,113,113,.14);color:var(--bad);border:1px solid rgba(248,113,113,.34)}
+.x{margin-left:auto;background:none;border:none;color:var(--ink-3);font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
+.x:hover{color:var(--ink)}
+.mbody{padding:22px}
+.mrow{display:grid;grid-template-columns:132px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:14px}
+.mrow:last-child{border:none}
+.mrow dt{font:600 11.5px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.mrow dd{margin:0;color:var(--ink-2)}
+.mrow dd ol{margin:0;padding-left:17px}
+.mrow dd li{margin-bottom:4px}
+@media(max-width:560px){.mrow{grid-template-columns:1fr;gap:3px}}
+
+footer{padding:78px 0 60px;text-align:center;border-top:1px solid var(--border)}
+footer .lede{margin:0 auto 26px}
+.fine{margin-top:44px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.lvl{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div id="prog"></div>
 
-<nav>
+<nav id="nav">
   <div class="nav-in">
-    <span class="logo">MF<span>.</span></span>
+    <span class="logo">MF<em>.</em></span>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#project">Project</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#experience">Experience</a><a href="#approach">Approach</a><a href="#skills">Skills</a><a href="#work">Work</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Bangalore, India · 15 days notice</div>
-    <h1>Mohammad Faisal</h1>
-    <p class="role"><b>QA Lead</b> &nbsp;·&nbsp; <b>SDET</b> &nbsp;·&nbsp; Test Automation &nbsp;·&nbsp; 8+ Years</p>
-    <p class="pitch">I build quality functions where none exist. Three times now — at <strong>Ultria</strong>, <strong>WebEngage</strong>, and <strong>SuperAGI</strong> — I've joined products with no test coverage, no process, or no team, and left them with all three. Currently the sole quality gatekeeper at SuperAGI, where I architected the Python/Playwright automation frameworks and own every production release.</p>
-    <div class="cta">
-      <a class="btn primary" href="Mohammad_Faisal_QA_Lead_SDET_Resume.pdf">Download Résumé</a>
-      <a class="btn" href="https://github.com/sayeedfaisal96">GitHub</a>
-      <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa">LinkedIn</a>
-      <a class="btn" href="mailto:sayeed.faisal96@gmail.com">Email</a>
+  <div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="grid-bg"></div>
+  <div class="wrap hero-in">
+    <div>
+      <div class="pill"><span class="dot"></span> OPEN TO QA LEAD / SDET ROLES &middot; 15 DAYS NOTICE</div>
+      <h1><span class="g">Mohammad Faisal</span></h1>
+      <p class="typed"><span id="tt"></span><span class="cursor">&nbsp;</span></p>
+      <p class="pitch">I build quality functions where none exist. Three times now &mdash; at <b>Ultria</b>, <b>WebEngage</b> and <b>SuperAGI</b> &mdash; I've joined products with no test coverage, no process, or no team, and left them with all three.</p>
+      <div class="cta">
+        <a class="btn p" href="resume.pdf">Download Resume</a>
+        <a class="btn" href="https://github.com/mohammad-faisal-qa">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa">LinkedIn</a>
+      </div>
+      <div class="contactline"><span>Bangalore, India</span><span>+91 8602495195</span><a href="mailto:sayeed.faisal96@gmail.com">sayeed.faisal96@gmail.com</a></div>
     </div>
-    <div class="meta">
-      <span>+91 8602495195</span>
-      <a href="mailto:sayeed.faisal96@gmail.com">sayeed.faisal96@gmail.com</a>
+    <div class="term">
+      <div class="term-bar">
+        <span class="tdot" style="background:#ff5f57"></span><span class="tdot" style="background:#febc2e"></span><span class="tdot" style="background:#28c840"></span>
+        <span class="term-title">pytest &mdash; regression suite</span>
+      </div>
+      <div class="term-body" id="tb"></div>
     </div>
   </div>
 </header>
 
-<div class="stats">
-  <div class="stat"><div class="n">8+</div><div class="l">Years in QA<br>and test automation</div></div>
-  <div class="stat"><div class="n">3 → 11</div><div class="l">QA team scaled<br>across 4 engineering pods</div></div>
-  <div class="stat"><div class="n">1,100+</div><div class="l">Issues surfaced in a<br>company-wide Bug Bash</div></div>
-  <div class="stat"><div class="n">~90%</div><div class="l">Production issues reduced<br>over 3 years at WebEngage</div></div>
-  <div class="stat"><div class="n">~80%</div><div class="l">Production defects reduced<br>at SuperAGI</div></div>
+<div class="marq"><div class="marq-track" id="mt"></div></div>
+
+<div class="stats" id="stats">
+  <div class="stat"><div class="n" data-to="8" data-suffix="+">0</div><div class="l">Years in QA and<br>test automation</div></div>
+  <div class="stat"><div class="n" data-text="3 &rarr; 11">0</div><div class="l">QA team scaled across<br>4 engineering pods</div></div>
+  <div class="stat"><div class="n" data-to="1100" data-suffix="+" data-comma="1">0</div><div class="l">Issues surfaced in a<br>company-wide Bug Bash</div></div>
+  <div class="stat"><div class="n" data-to="90" data-prefix="~" data-suffix="%">0</div><div class="l">Production issues reduced<br>over 3 years at WebEngage</div></div>
+  <div class="stat"><div class="n" data-to="80" data-prefix="~" data-suffix="%">0</div><div class="l">Production defects reduced<br>at SuperAGI</div></div>
 </div>
 
 <section id="about">
   <div class="wrap">
-    <div class="sec-head"><h2>About</h2></div>
-    <p class="lede">QA Lead and SDET with 8+ years across AI-native SaaS, consumer mobile, and enterprise CRM/CLM platforms. My automation background spans <strong>Python, Playwright and Pytest</strong> on one side and <strong>Java, Selenium and REST Assured</strong> on the other, with BDD experience in both <strong>pytest-bdd</strong> and <strong>Cucumber/Serenity</strong>.</p>
-    <p class="lede">Beyond the code, I've built the parts of quality that don't show up in a test report — hiring and mentoring QA engineers, establishing STLC from scratch, introducing release sprint systems, running defect triage and RCA, and reporting quality metrics to product leadership. I care as much about what we choose <em>not</em> to automate as what we do.</p>
+    <div class="rv">
+      <div class="eyebrow">About</div>
+      <h2>Automation depth, with the judgment<br>to know when not to automate.</h2>
+      <p class="lede">Eight years across AI-native SaaS, consumer mobile, and enterprise CRM/CLM platforms. My automation background spans <b>Python, Playwright and Pytest</b> on one side and <b>Java, Selenium and REST Assured</b> on the other, with BDD in both <b>pytest-bdd</b> and <b>Cucumber/Serenity</b>. Beyond code, I've built the parts of quality that never appear in a test report &mdash; hiring and mentoring, STLC from scratch, release sprint systems, defect triage, and quality metrics reported to product leadership.</p>
+    </div>
+    <div class="prin">
+      <div class="pr rv"><div class="ic">&#9678;</div><h3>Assert data, not pixels</h3><p>Charts and dashboards get validated by intercepting the API payload behind the visual &mdash; not by screenshotting it. It removes an entire class of brittle tests.</p></div>
+      <div class="pr rv"><div class="ic">&#9881;</div><h3>Kill flakiness at the source</h3><p>Test data goes through the API, not the UI. Most flakiness is a setup problem wearing a timing costume &mdash; waits and retries only hide it.</p></div>
+      <div class="pr rv"><div class="ic">&#9707;</div><h3>Automate what pays</h3><p>Not everything deserves automation. Knowing where coverage earns its maintenance cost &mdash; and where exploratory testing finds more &mdash; is the actual skill.</p></div>
+    </div>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="sec-head"><h2>Experience</h2></div>
-    <p class="lede">Eight years, three companies, one recurring pattern.</p>
-
-    <div class="job">
-      <div class="job-top"><span class="co">SuperAGI</span><span class="dates">Nov 2025 — Present</span></div>
-      <p class="co-desc">AI-native CRM platform automating sales, outreach, and customer engagement through intelligent agents and multi-channel workflows.</p>
-      <div class="title">Senior QA Engineer (QA Lead) · Bangalore</div>
-      <ul>
-        <li><strong>Sole owner of production quality</strong> across 4 engineering pods — I review every PR before merge, make the final ship decision, and own all production deployments, with a near-zero production defect rate.</li>
-        <li><strong>Architected the UI and API automation frameworks</strong> — Python + Playwright + pytest on the Page Object Model (UI) and Service Object Model (API), with a hybrid BDD layer: pytest-bdd for business-readable end-to-end journeys, plain pytest for regression depth.</li>
-        <li><strong>Made Pydantic response-model validation the default</strong> over hand-written field assertions, and drove all test data through REST APIs (httpx) rather than the UI — eliminating flakiness at its source instead of masking it with waits and retries.</li>
-        <li><strong>Built reusable component objects for the hardest UI surfaces</strong> — searchable paginated data grids, drag-and-drop Kanban deal pipelines, and the workflow-builder canvas — so a product-wide UI change is a single-file fix.</li>
-        <li><strong>Replaced duplicated Prod/Staging suites</strong> with config-driven environments (pydantic-settings) and a templated endpoint registry; parallel execution via pytest-xdist with single-login auth reuse through Playwright <code>storage_state</code> and cross-worker token sharing.</li>
-        <li><strong>"Assert data, not pixels"</strong> — dashboard and chart validation by intercepting network traffic (<code>expect_response</code>) and asserting the API payload behind the visual, removing an entire class of brittle chart tests.</li>
-        <li><strong>Dockerized and wired into Jenkins on Kubernetes</strong> with images published to AWS ECR; ReportPortal dashboards and Slack pass/fail alerts, auto-attaching screenshots, video, Playwright traces, and API payloads on failure.</li>
-        <li>Ran a company-wide <strong>Bug Bash surfacing 1,100+ issues</strong>, driving the remediation programme that cut production defects by <strong>~80%</strong>.</li>
-        <li><strong>Scaled the QA team from 3 to 11 engineers</strong> and established STLC from scratch — sprint test plans, entry/exit criteria, defect SLA tracking, and weekly quality dashboards to product leadership.</li>
-      </ul>
+    <div class="rv">
+      <div class="eyebrow">Experience</div>
+      <h2>Eight years, three companies, one pattern.</h2>
+      <p class="lede">Every one of these started with something missing &mdash; coverage, process, or a team.</p>
     </div>
 
-    <div class="job">
-      <div class="job-top"><span class="co">WebEngage</span><span class="dates">Oct 2020 — Nov 2025</span></div>
-      <p class="co-desc">Customer engagement and retention platform serving 800+ global brands — multi-channel automation via Push, Email, SMS, WhatsApp, and In-App messaging.</p>
-      <div class="title">Senior QA Engineer · Oct 2022 — Nov 2025</div>
-      <ul>
-        <li>Led QA for the Mobile SDK, Personalization Engine, and Shopify pods; owned go/no-go release decisions and <strong>reduced production issues by ~90% over three years</strong>.</li>
-        <li><strong>Introduced the release sprint system</strong> and owned release management end to end — coordinating engineering, product, and DevOps through deployment readiness and production sign-off.</li>
-        <li><strong>Automation (BDD)</strong> — authored Gherkin feature files and step definitions in the team's <strong>Cucumber + Serenity</strong> framework (Java, Selenium WebDriver, REST Assured), building automated regression coverage for the <strong>Onsite Notifications</strong> and <strong>Onsite Surveys</strong> modules: trigger and targeting rules, segment-based audience selection, display and frequency-capping logic, cross-browser rendering, and response capture.</li>
-        <li>Worked within a tag-driven, multi-environment suite (Prod US, Prod IN, Staging) on <strong>Jenkins scheduled regression</strong>, with Serenity reporting, failure screenshots, embedded API logs, and JIRA-linked known issues.</li>
-        <li>Validated event ingestion and campaign delivery through <strong>REST API checks and SQL queries</strong> — payload validation, attribute sync, segment membership, journey-trigger accuracy, and webhook retry/idempotency.</li>
-        <li>Led hands-on testing of consumer mobile experiences across <strong>iOS &amp; Android SDKs and the Web SDK</strong>, using <strong>Charles Proxy</strong> to intercept and validate SDK traffic, headers, payload encryption, and error handling.</li>
-        <li>Owned multi-channel testing — FCM/APNS Push, In-App, Email, SMS (multi-aggregator), WhatsApp Business API — covering frequency capping, DND rules, and fallback routing.</li>
-      </ul>
-      <div class="title">QA Engineer · Oct 2020 — Sep 2022</div>
-      <ul>
-        <li><strong>First QA engineer on the team</strong> — joined when there were no processes, no test cases, and no quality infrastructure; built the function from scratch alongside the founding engineering team, then hired, onboarded, and mentored the QA engineers who followed.</li>
-        <li>Designed the first test suites for the <strong>Mobile SDK (iOS &amp; Android), Web SDK, and Personalization Engine</strong> — initialization, event tracking, user attributes, and content rendering; validated SSL-pinned SDK traffic and reproduced network-failure edge cases on real devices.</li>
-        <li>Tested <strong>Journey Builder</strong> from its initial release — branching logic, wait nodes, event triggers, and A/B variant routing; ran integration testing across SMS, Email, WhatsApp, Shopify, and Magento.</li>
-      </ul>
+    <div class="tl rv" id="tl">
+      <div class="tl-line"></div><div class="tl-fill"></div>
+      <div class="tl-row">
+        <div class="tl-i"><div class="yr">2018</div><div class="mk"></div><strong>Ultria</strong><span>Associate Analyst</span></div>
+        <div class="tl-i"><div class="yr">2019</div><div class="mk"></div><strong>Ultria</strong><span>Quality Analyst &mdash; CLM from zero</span></div>
+        <div class="tl-i"><div class="yr">2020</div><div class="mk"></div><strong>WebEngage</strong><span>First QA engineer</span></div>
+        <div class="tl-i"><div class="yr">2025</div><div class="mk"></div><strong>SuperAGI</strong><span>QA Lead &mdash; sole gatekeeper</span></div>
+      </div>
     </div>
 
-    <div class="job">
-      <div class="job-top"><span class="co">Ultria Software</span><span class="dates">Feb 2018 — Sep 2020</span></div>
-      <p class="co-desc">Enterprise Contract Lifecycle Management suite built on Salesforce — "request to renewal" contract automation with dynamic assembly, clause libraries, and approval routing, delivered alongside TMS (Tenant Management System) for per-tenant configuration.</p>
-      <div class="title">Quality Analyst · Oct 2019 — Sep 2020</div>
-      <ul>
-        <li><strong>Primary QA owner of the Salesforce-native CLM product from zero</strong> — built coverage module by module as the product was developed: contract creation from Opportunity, dynamic contract assembly, clause library and template management, approval routing, versioning, and the full request-to-renewal lifecycle in Salesforce Lightning.</li>
-        <li>Owned <strong>integration testing</strong> across DocuSign e-signature (envelope generation, multi-signatory routing, signer authentication, webhook callbacks, signed-document write-back), the Outlook Add-In, and the iOS/Android mobile apps — plus <strong>TMS</strong>, the multi-tenant admin product used to provision clients and configure per-tenant workflows, permissions, and data isolation.</li>
-        <li><strong>Extended the team's Java + Selenium WebDriver framework</strong> (TestNG, Page Object Model, Maven) to cover <strong>Salesforce Lightning</strong> — shadow DOM on Lightning Web Components, dynamic element IDs, nested Visualforce iframes, lazy-loaded views, and async record commits — using fluent waits, custom expected conditions, and centralised locators to stay stable across platform releases.</li>
-        <li>Built <strong>REST Assured API automation</strong> — OAuth and token handling, reusable request/response specifications, JsonPath and JSON schema validation, and <strong>chained end-to-end flows</strong> (contract → approval → DocuSign envelope → status callback).</li>
-        <li>Authored test cases from SRS/CRS documentation; managed <strong>200+ test cases</strong> in Zephyr (JIRA); ran SQL validation across Salesforce, CLM, and DocuSign data stores.</li>
-      </ul>
-      <div class="title">Associate Analyst — Implementation &amp; QA · Feb 2018 — Sep 2019</div>
-      <ul>
-        <li>Manual functional, regression, and exploratory testing through enterprise client implementation cycles; authored UAT scripts aligned to client business requirements and tracked defects with RCA and reproduction steps.</li>
-      </ul>
+    <div class="tabs rv">
+      <button class="tab on" data-t="0">SuperAGI<small>Nov 2025 &mdash; Present</small></button>
+      <button class="tab" data-t="1">WebEngage<small>Oct 2020 &mdash; Nov 2025</small></button>
+      <button class="tab" data-t="2">Ultria Software<small>Feb 2018 &mdash; Sep 2020</small></button>
+    </div>
+
+    <div class="panel on rv" data-p="0">
+      <div class="pcard">
+        <div class="prole"><h3>Senior QA Engineer &mdash; QA Lead</h3><span class="when">Bangalore</span></div>
+        <p class="pdesc">AI-native CRM automating sales, outreach and customer engagement through intelligent agents and multi-channel workflows.</p>
+        <ul>
+          <li><b>Sole owner of production quality</b> across 4 engineering pods &mdash; I review every PR before merge, make the final ship decision, and own all production deployments, with a near-zero production defect rate.</li>
+          <li><b>Architected the UI and API automation frameworks</b> &mdash; Page Object Model for UI, Service Object Model for API, with a hybrid BDD layer: pytest-bdd for end-to-end journeys, plain pytest for regression depth.</li>
+          <li><b>Eliminated flakiness at its source</b> &mdash; test data driven through REST APIs rather than the UI, with Pydantic response models replacing hand-written assertions, so backend drift fails loudly at the schema boundary.</li>
+          <li><b>"Assert data, not pixels"</b> &mdash; dashboard and chart validation by intercepting network traffic and asserting the API payload behind the visual.</li>
+          <li><b>Reusable component objects</b> for the hardest surfaces &mdash; paginated data grids, drag-and-drop Kanban pipelines, the workflow-builder canvas &mdash; so a product-wide UI change is a single-file fix.</li>
+          <li><b>Config-driven environments and a templated endpoint registry</b> replaced duplicated Prod/Staging suites; parallel execution via pytest-xdist with single-login auth reuse and cross-worker token sharing.</li>
+          <li><b>Dockerized and wired into Jenkins on Kubernetes</b> with images published to AWS ECR; ReportPortal dashboards and Slack alerts attaching screenshots, video, traces and API payloads on failure.</li>
+          <li>Ran a company-wide <b>Bug Bash surfacing 1,100+ issues</b>, driving the remediation programme that cut production defects by <b>~80%</b>.</li>
+          <li><b>Scaled the QA team from 3 to 11</b> and established STLC from scratch &mdash; test plans, entry/exit criteria, defect SLAs, and weekly quality dashboards to product leadership.</li>
+        </ul>
+        <div class="sub">Stack</div>
+        <div class="tech"><span>Python</span><span>Playwright</span><span>pytest</span><span>pytest-bdd</span><span>httpx</span><span>Pydantic</span><span>pytest-xdist</span><span>ReportPortal</span><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>AWS ECR</span></div>
+      </div>
+    </div>
+
+    <div class="panel rv" data-p="1">
+      <div class="pcard">
+        <div class="prole"><h3>Senior QA Engineer</h3><span class="when">Oct 2022 &mdash; Nov 2025</span></div>
+        <p class="pdesc">Customer engagement platform serving 800+ global brands &mdash; multi-channel automation via Push, Email, SMS, WhatsApp and In-App.</p>
+        <ul>
+          <li>Led QA for the Mobile SDK, Personalization Engine and Shopify pods; owned go/no-go release decisions and <b>reduced production issues by ~90% over three years</b>.</li>
+          <li><b>Introduced the release sprint system</b> and owned release management end to end &mdash; coordinating engineering, product and DevOps through deployment readiness and production sign-off.</li>
+          <li><b>BDD automation</b> &mdash; authored Gherkin feature files and step definitions in the team's Cucumber + Serenity framework, building regression coverage for the <b>Onsite Notifications</b> and <b>Onsite Surveys</b> modules: trigger and targeting rules, segment-based audiences, frequency capping, cross-browser rendering and response capture.</li>
+          <li>Worked in a tag-driven, multi-environment suite on <b>Jenkins scheduled regression</b>, with failure screenshots, embedded API logs and JIRA-linked known issues.</li>
+          <li>Validated event ingestion and campaign delivery through <b>REST API checks and SQL queries</b> &mdash; attribute sync, segment membership, journey-trigger accuracy, webhook retry and idempotency.</li>
+          <li>Led testing of consumer mobile experiences across <b>iOS &amp; Android SDKs and the Web SDK</b>, using Charles Proxy to validate SDK traffic, headers, payload encryption and error handling.</li>
+          <li>Owned multi-channel testing &mdash; FCM/APNS Push, In-App, Email, SMS, WhatsApp Business API &mdash; covering frequency capping, DND rules and fallback routing.</li>
+        </ul>
+        <div class="prole" style="margin-top:26px;padding-top:22px;border-top:1px solid var(--border)"><h3>QA Engineer</h3><span class="when">Oct 2020 &mdash; Sep 2022</span></div>
+        <ul>
+          <li><b>First QA engineer on the team</b> &mdash; joined when there were no processes, no test cases and no quality infrastructure; built the function from scratch, then hired, onboarded and mentored the engineers who followed.</li>
+          <li>Designed the first test suites for the <b>Mobile SDK, Web SDK and Personalization Engine</b>; validated SSL-pinned SDK traffic and reproduced network-failure edge cases on real devices.</li>
+          <li>Tested <b>Journey Builder</b> from initial release &mdash; branching logic, wait nodes, event triggers and A/B variant routing.</li>
+        </ul>
+        <div class="sub">Stack</div>
+        <div class="tech"><span>Java</span><span>Selenium</span><span>Cucumber</span><span>Serenity BDD</span><span>REST Assured</span><span>Jenkins</span><span>SQL</span><span>Charles Proxy</span><span>JIRA</span></div>
+      </div>
+    </div>
+
+    <div class="panel rv" data-p="2">
+      <div class="pcard">
+        <div class="prole"><h3>Quality Analyst</h3><span class="when">Oct 2019 &mdash; Sep 2020</span></div>
+        <p class="pdesc">Enterprise Contract Lifecycle Management suite built on Salesforce &mdash; request-to-renewal contract automation, delivered alongside TMS for per-tenant configuration.</p>
+        <ul>
+          <li><b>Primary QA owner of the Salesforce-native CLM product from zero</b> &mdash; built coverage module by module as the product was developed: contract creation from Opportunity, dynamic assembly, clause libraries, approval routing and versioning.</li>
+          <li>Owned <b>integration testing</b> across DocuSign e-signature, the Outlook Add-In and the iOS/Android apps &mdash; plus <b>TMS</b>, the multi-tenant admin product for provisioning clients and configuring per-tenant workflows, permissions and data isolation.</li>
+          <li><b>Extended the team's Java + Selenium framework to cover Salesforce Lightning</b> &mdash; shadow DOM on Lightning Web Components, dynamic element IDs, nested Visualforce iframes, lazy-loaded views and async record commits.</li>
+          <li>Built <b>REST Assured API automation</b> with OAuth handling, JSON schema validation and <b>chained end-to-end flows</b>: contract &rarr; approval &rarr; DocuSign envelope &rarr; status callback.</li>
+          <li>Managed <b>200+ test cases</b> in Zephyr and ran SQL validation across Salesforce, CLM and DocuSign data stores.</li>
+        </ul>
+        <div class="prole" style="margin-top:26px;padding-top:22px;border-top:1px solid var(--border)"><h3>Associate Analyst &mdash; Implementation &amp; QA</h3><span class="when">Feb 2018 &mdash; Sep 2019</span></div>
+        <ul>
+          <li>Manual functional, regression and exploratory testing through enterprise client implementation cycles; authored UAT scripts and tracked defects with RCA and reproduction steps.</li>
+        </ul>
+        <div class="sub">Stack</div>
+        <div class="tech"><span>Java</span><span>Selenium</span><span>TestNG</span><span>Maven</span><span>REST Assured</span><span>Salesforce</span><span>DocuSign</span><span>SQL</span><span>Zephyr</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">Approach</div>
+      <h2>Where the coverage sits.</h2>
+      <p class="lede">Heavy at the fast, cheap, stable layers. Thin and deliberate at the top &mdash; end-to-end tests are the most expensive thing you own, so they earn their place or they go.</p>
+    </div>
+    <div class="two">
+      <div class="pyr rv" id="pyr">
+        <div class="lvl l1"><b>End-to-End</b><span>critical journeys only &middot; BDD</span></div>
+        <div class="lvl l2"><b>Integration &amp; Contract</b><span>schema validation &middot; network mocking</span></div>
+        <div class="lvl l3"><b>API &amp; Data</b><span>fast, stable, drives test setup</span></div>
+      </div>
+      <div>
+        <div class="cov">
+          <div class="cv rv"><b>Web UI</b><span>Playwright, Selenium</span></div>
+          <div class="cv rv"><b>REST APIs</b><span>httpx, REST Assured</span></div>
+          <div class="cv rv"><b>Mobile SDKs</b><span>iOS &amp; Android, Charles Proxy</span></div>
+          <div class="cv rv"><b>Databases</b><span>SQL validation</span></div>
+          <div class="cv rv"><b>Integrations</b><span>Salesforce, DocuSign, Shopify</span></div>
+          <div class="cv rv"><b>Multi-channel</b><span>Push, Email, SMS, WhatsApp</span></div>
+          <div class="cv rv"><b>Cross-browser</b><span>Chrome, Firefox, Safari</span></div>
+          <div class="cv rv"><b>Release gates</b><span>CI quality gates, sign-off</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="skills">
   <div class="wrap">
-    <div class="sec-head"><h2>Skills</h2><span class="sec-note">Highlighted items are what I use most</span></div>
-    <div class="skill-grid">
-      <div class="skill-card">
-        <h3>Test Automation</h3>
-        <div class="chips">
-          <span class="chip hi">Python</span><span class="chip hi">Playwright</span><span class="chip hi">Pytest</span>
-          <span class="chip hi">pytest-bdd</span><span class="chip">Page Object Model</span><span class="chip">Service Object Model</span>
-          <span class="chip">Java</span><span class="chip">Selenium WebDriver</span><span class="chip">Cucumber</span>
-          <span class="chip">Serenity BDD</span><span class="chip">TestNG</span><span class="chip">JUnit</span>
-          <span class="chip">REST Assured</span><span class="chip">httpx</span><span class="chip">Pydantic</span>
-          <span class="chip">pytest-xdist</span><span class="chip">Postman</span><span class="chip">Newman</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>CI/CD &amp; Reporting</h3>
-        <div class="chips">
-          <span class="chip hi">Jenkins</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span>
-          <span class="chip">Kubernetes</span><span class="chip">AWS ECR</span><span class="chip">Git</span>
-          <span class="chip">ReportPortal</span><span class="chip">Allure</span><span class="chip">Serenity Reports</span>
-          <span class="chip">Slack integration</span><span class="chip">Parallel execution</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Database &amp; Backend</h3>
-        <div class="chips">
-          <span class="chip hi">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span>
-          <span class="chip">JSON schema validation</span><span class="chip">Payload validation</span>
-          <span class="chip">Webhook testing</span><span class="chip">Event ingestion</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Testing Types</h3>
-        <div class="chips">
-          <span class="chip">Functional</span><span class="chip">Exploratory</span><span class="chip">End-to-End</span>
-          <span class="chip">Regression</span><span class="chip">API</span><span class="chip">Integration</span>
-          <span class="chip">Mobile SDK (iOS/Android)</span><span class="chip">Web SDK</span>
-          <span class="chip">Cross-browser</span><span class="chip">Release validation</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Leadership &amp; Process</h3>
-        <div class="chips">
-          <span class="chip hi">QA team scaling</span><span class="chip hi">Release management</span>
-          <span class="chip">Hiring &amp; mentoring</span><span class="chip">STLC</span><span class="chip">Risk-based testing</span>
-          <span class="chip">Shift-left QA</span><span class="chip">Defect triage</span><span class="chip">RCA</span>
-          <span class="chip">Agile / Scrum</span><span class="chip">Stakeholder reporting</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <h3>Tools &amp; Integrations</h3>
-        <div class="chips">
-          <span class="chip">JIRA</span><span class="chip">Zephyr Scale</span><span class="chip">Confluence</span>
-          <span class="chip">Charles Proxy</span><span class="chip">Salesforce</span><span class="chip">DocuSign</span>
-          <span class="chip">Outlook Add-In</span><span class="chip">Shopify / Magento</span>
-          <span class="chip">FCM / APNS</span><span class="chip">WhatsApp Business API</span>
-          <span class="chip">Android Studio</span><span class="chip">Xcode</span><span class="chip">Linux CLI</span>
-        </div>
-      </div>
+    <div class="rv">
+      <div class="eyebrow">Skills</div>
+      <h2>What I work with.</h2>
+      <p class="lede">Highlighted items are what I reach for most.</p>
+    </div>
+    <div class="sgrid">
+      <div class="scard rv"><h3>Test Automation</h3><div class="chips">
+        <span class="chip hi">Python</span><span class="chip hi">Playwright</span><span class="chip hi">Pytest</span><span class="chip hi">pytest-bdd</span>
+        <span class="chip">Page Object Model</span><span class="chip">Service Object Model</span><span class="chip">Java</span><span class="chip">Selenium</span>
+        <span class="chip">Cucumber</span><span class="chip">Serenity BDD</span><span class="chip">TestNG</span><span class="chip">JUnit</span>
+        <span class="chip">REST Assured</span><span class="chip">httpx</span><span class="chip">Pydantic</span><span class="chip">pytest-xdist</span><span class="chip">Postman</span></div></div>
+      <div class="scard rv"><h3>CI/CD &amp; Reporting</h3><div class="chips">
+        <span class="chip hi">Jenkins</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
+        <span class="chip">AWS ECR</span><span class="chip">Git</span><span class="chip">ReportPortal</span><span class="chip">Allure</span>
+        <span class="chip">Serenity Reports</span><span class="chip">Slack integration</span><span class="chip">Parallel execution</span></div></div>
+      <div class="scard rv"><h3>Database &amp; Backend</h3><div class="chips">
+        <span class="chip hi">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">JSON schema validation</span>
+        <span class="chip">Payload validation</span><span class="chip">Webhook testing</span><span class="chip">Event ingestion</span></div></div>
+      <div class="scard rv"><h3>Testing Types</h3><div class="chips">
+        <span class="chip">Functional</span><span class="chip">Exploratory</span><span class="chip">End-to-End</span><span class="chip">Regression</span>
+        <span class="chip">API</span><span class="chip">Integration</span><span class="chip">Mobile SDK</span><span class="chip">Web SDK</span>
+        <span class="chip">Cross-browser</span><span class="chip">Release validation</span></div></div>
+      <div class="scard rv"><h3>Leadership &amp; Process</h3><div class="chips">
+        <span class="chip hi">QA team scaling</span><span class="chip hi">Release management</span><span class="chip">Hiring &amp; mentoring</span>
+        <span class="chip">STLC</span><span class="chip">Risk-based testing</span><span class="chip">Shift-left QA</span><span class="chip">Defect triage</span>
+        <span class="chip">RCA</span><span class="chip">Agile / Scrum</span><span class="chip">Stakeholder reporting</span></div></div>
+      <div class="scard rv"><h3>Domains</h3><div class="chips">
+        <span class="chip">AI-native CRM</span><span class="chip">Marketing automation</span><span class="chip">Consumer mobile</span>
+        <span class="chip">Contract lifecycle (CLM)</span><span class="chip">Salesforce</span><span class="chip">E-commerce</span>
+        <span class="chip">Multi-tenant SaaS</span></div></div>
     </div>
   </div>
 </section>
 
-<section id="project">
+<section id="work">
   <div class="wrap">
-    <div class="sec-head"><h2>Portfolio Project</h2></div>
-    <p class="lede">A test automation framework and the demo application it tests — both built from scratch, both public. Every claim here is inspectable: read the code, read the reports, watch the pipeline run.</p>
-
-    <div class="proj">
-      <div class="proj-top">
-        <h3>QA Automation Framework</h3>
-        <span class="badge wip">In Progress</span>
-      </div>
-      <div class="stack">Python · Playwright · pytest · pytest-bdd · httpx · Pydantic · pytest-xdist · Allure · GitHub Actions</div>
-      <ul>
-        <li><strong>Page Object Model with a hybrid BDD layer</strong> — Gherkin feature files for end-to-end journeys, plain pytest for regression depth.</li>
-        <li><strong>API-driven test data</strong> for setup and teardown, plus Pydantic response-model validation and SQL data checks.</li>
-        <li><strong>Network mocking</strong> to test error states that are hard to reproduce — 500s, timeouts, empty responses — and verify how the UI handles them.</li>
-        <li><strong>Parallel execution</strong> with pytest-xdist, config-driven environments, and tag-driven suite selection (<code>@smoke</code>, <code>@regression</code>).</li>
-        <li><strong>GitHub Actions CI</strong> with daily scheduled regression and Allure reports published publicly on every run — passing or failing.</li>
-      </ul>
+    <div class="rv">
+      <div class="eyebrow">Work in progress</div>
+      <h2>A framework you can actually read.</h2>
+      <p class="lede">A test automation framework and the demo application it tests &mdash; both built from scratch, both public. Read the code, read the reports, watch the pipeline run.</p>
     </div>
-
-    <div class="proj">
-      <div class="proj-top">
-        <h3>Demo Application Under Test</h3>
-        <span class="badge wip">In Progress</span>
-      </div>
-      <div class="stack">A purpose-built web app with deliberately difficult automation targets</div>
-      <ul>
-        <li>Campaign creation, audience segmentation, and onsite-engagement flows — modelled on real marketing-platform patterns.</li>
-        <li>Searchable paginated data grids, drag-and-drop pipelines, and dynamic dashboards.</li>
-        <li>Deliberate hard cases: dynamic IDs, iframes, shadow DOM, async loading, and race conditions.</li>
-      </ul>
+    <div class="pjgrid">
+      <div class="pj rv"><div class="pj-top"><h3>QA Automation Framework</h3><span class="badge">Building</span></div>
+        <p class="st">Python &middot; Playwright &middot; pytest-bdd &middot; Allure &middot; GitHub Actions</p>
+        <ul>
+          <li><b>Page Object Model with a hybrid BDD layer</b> &mdash; Gherkin for journeys, pytest for regression depth.</li>
+          <li><b>API-driven test data</b> plus Pydantic response validation and SQL data checks.</li>
+          <li><b>Network mocking</b> for error states that are hard to reproduce &mdash; 500s, timeouts, empty responses.</li>
+          <li><b>Parallel execution</b> with xdist and tag-driven suites.</li>
+        </ul></div>
+      <div class="pj rv"><div class="pj-top"><h3>Demo App Under Test</h3><span class="badge">Building</span></div>
+        <p class="st">A purpose-built target with deliberately difficult automation surfaces</p>
+        <ul>
+          <li>Campaign creation, segmentation and onsite-engagement flows.</li>
+          <li>Searchable paginated grids, drag-and-drop pipelines, dynamic dashboards.</li>
+          <li><b>Deliberate hard cases</b> &mdash; dynamic IDs, iframes, shadow DOM, race conditions.</li>
+        </ul></div>
+      <div class="pj rv"><div class="pj-top"><h3>QA Lead Artefacts</h3><span class="badge">Building</span></div>
+        <p class="st">The written side of quality &mdash; strategy, not just scripts</p>
+        <ul>
+          <li><b>Test strategy</b> with a risk matrix and entry/exit criteria.</li>
+          <li><b>Feature-level test plan</b>, strategy down to specifics.</li>
+          <li><b>Sample defect reports</b> with severity and priority properly distinguished.</li>
+          <li><b>Quality metrics</b> &mdash; and how each one gets gamed when used badly.</li>
+        </ul></div>
     </div>
+    <div class="rv" style="margin-top:26px;text-align:center">
+      <button class="btn" id="bugBtn">&#128027; See how I write a bug report</button>
+    </div>
+  </div>
+</section>
 
-    <div class="proj">
-      <div class="proj-top">
-        <h3>QA Lead Artefacts</h3>
-        <span class="badge wip">In Progress</span>
-      </div>
-      <div class="stack">The written side of quality — strategy, not just scripts</div>
-      <ul>
-        <li><strong>Test strategy</strong> with a risk matrix, entry/exit criteria, and a rationale for what we deliberately don't automate.</li>
-        <li><strong>Feature-level test plan</strong>, showing the path from strategy down to specifics.</li>
-        <li><strong>Sample defect reports</strong> with severity and priority correctly distinguished.</li>
-        <li><strong>Quality metrics</strong> — what to track, what each one tells you, and how each gets gamed when used badly.</li>
-      </ul>
+<section id="education" style="padding-top:0">
+  <div class="wrap rv">
+    <div class="eyebrow">Education</div>
+    <div class="edu">
+      <span class="cap">&#127891;</span>
+      <div><b>Bachelor of Engineering &mdash; Electronics &amp; Communication</b><span>IES IPS Academy, Indore &middot; RGPV University</span></div>
+      <span class="yr">2018</span>
     </div>
   </div>
 </section>
 
 <footer id="contact">
-  <div class="wrap">
-    <h2>Let's talk</h2>
-    <p>Open to QA Lead and SDET roles. Currently in Bangalore, 15 days notice.</p>
+  <div class="wrap rv">
+    <div class="eyebrow" style="justify-content:center">Contact</div>
+    <h2>Let's talk.</h2>
+    <p class="lede">Open to QA Lead and SDET roles. Based in Bangalore, 15 days notice.</p>
     <div class="cta" style="justify-content:center">
-      <a class="btn primary" href="mailto:sayeed.faisal96@gmail.com">sayeed.faisal96@gmail.com</a>
+      <a class="btn p" href="mailto:sayeed.faisal96@gmail.com">sayeed.faisal96@gmail.com</a>
       <a class="btn" href="https://linkedin.com/in/mohammad-faisal-qa">LinkedIn</a>
-      <a class="btn" href="https://github.com/sayeedfaisal96">GitHub</a>
+      <a class="btn" href="https://github.com/mohammad-faisal-qa">GitHub</a>
+      <a class="btn" href="resume.pdf">Resume</a>
     </div>
-    <p class="disclosure">The portfolio project on this site is personal work, built to demonstrate framework design — it is not affiliated with any employer.<br>© 2026 Mohammad Faisal</p>
+    <p class="fine">The portfolio project on this site is personal work built to demonstrate framework design &mdash; not affiliated with any employer.<br>&copy; 2026 Mohammad Faisal &middot; Built by hand, tested by habit.</p>
   </div>
 </footer>
 
+<div class="mask" id="mask">
+  <div class="modal">
+    <div class="mhead"><span class="sev">SEV-2</span><h3>BUG-1042 &mdash; Cart total ignores promo code after quantity change</h3><button class="x" id="mx">&times;</button></div>
+    <div class="mbody">
+      <dl style="margin:0">
+        <div class="mrow"><dt>Environment</dt><dd>Web &middot; Chrome 128 / Safari 17 &middot; Staging build 4.12.3</dd></div>
+        <div class="mrow"><dt>Preconditions</dt><dd>User is logged in with an active cart and a valid 10% promo code applied.</dd></div>
+        <div class="mrow"><dt>Steps</dt><dd><ol>
+          <li>Add any item to the cart</li>
+          <li>Apply promo code <code>SAVE10</code> &mdash; total updates correctly</li>
+          <li>Increase the item quantity from 1 to 2</li>
+          <li>Observe the order summary</li>
+        </ol></dd></div>
+        <div class="mrow"><dt>Expected</dt><dd>Discount recalculates against the new subtotal; total reflects 10% off the updated amount.</dd></div>
+        <div class="mrow"><dt>Actual</dt><dd>Subtotal updates but the discount stays pinned to the original single-item value. Customer is undercharged on every quantity increase.</dd></div>
+        <div class="mrow"><dt>Evidence</dt><dd>Screen recording, HAR file, and <code>POST /api/cart/recalculate</code> response showing <code>discount_amount</code> unchanged while <code>subtotal</code> increments.</dd></div>
+        <div class="mrow"><dt>Severity</dt><dd><b>SEV-2</b> &mdash; direct revenue impact, no data loss, no workaround available to the user.</dd></div>
+        <div class="mrow"><dt>Priority</dt><dd><b>P1</b> &mdash; affects every promo-code order; ship-blocking for the current release.</dd></div>
+        <div class="mrow"><dt>Notes</dt><dd>Severity and priority are deliberately separate. Severity is what the bug does; priority is how soon we act. Conflating them is the most common reason triage meetings run long.</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<script>
+const prog=document.getElementById('prog'),navEl=document.getElementById('nav');
+addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(scrollY/h*100)+'%';
+  navEl.classList.toggle('stuck',scrollY>10);
+},{passive:true});
+
+// marquee
+const stack=['Python','Playwright','Pytest','pytest-bdd','Java','Selenium','Cucumber','Serenity BDD','REST Assured','httpx','Pydantic','pytest-xdist','Jenkins','GitHub Actions','Docker','Kubernetes','AWS ECR','Allure','ReportPortal','SQL','Charles Proxy','JIRA','Zephyr','Salesforce','DocuSign'];
+document.getElementById('mt').innerHTML=[...stack,...stack].map(s=>'<span>'+s+'</span>').join('');
+
+// typing
+const lines=['QA Lead  ·  SDET','Python · Playwright · Pytest','Java · Selenium · REST Assured','BDD · Cucumber · Serenity','8+ years building quality from zero'];
+const tt=document.getElementById('tt');let li=0,ci=0,del=false;
+(function type(){
+  const cur=lines[li];
+  tt.textContent=del?cur.slice(0,ci--):cur.slice(0,ci++);
+  let d=del?30:60;
+  if(!del&&ci>cur.length){del=true;d=1850}
+  else if(del&&ci<0){del=false;li=(li+1)%lines.length;d=330}
+  setTimeout(type,d);
+})();
+
+// terminal loop
+const runs=[[
+  ['$ pytest --bdd -n 4 --alluredir=reports','t-ac'],['collected 38 items / 4 workers','t-dim'],['',''],
+  ['features/login.feature ....','t-ok'],['features/campaigns.feature ......','t-ok'],
+  ['features/segments.feature .....','t-ok'],['features/onsite_surveys.feature ....','t-ok'],
+  ['api/test_contracts.py ........','t-ok'],['',''],['38 passed in 42.18s','t-ok'],
+  ['Allure report published','t-vi']
+],[
+  ['$ pytest -m smoke --env=staging','t-ac'],['collected 12 items','t-dim'],['',''],
+  ['test_auth_session_reuse ...','t-ok'],['test_grid_pagination ....','t-ok'],
+  ['test_kanban_drag_drop ..','t-ok'],['test_dashboard_payload ...','t-wn'],['',''],
+  ['11 passed, 1 flaky (retried, passed)','t-wn'],
+  ['trace.zip attached to report','t-vi']
+]];
+const tb=document.getElementById('tb');let ri=0;
+function play(){
+  tb.innerHTML='';const seq=runs[ri%runs.length];ri++;let i=0;
+  (function nxt(){
+    if(i>=seq.length){setTimeout(play,3400);return}
+    const [txt,cls]=seq[i++];
+    const d=document.createElement('div');d.className=cls;d.textContent=txt||' ';
+    tb.appendChild(d);setTimeout(nxt,txt?240:110);
+  })();
+}
+setTimeout(play,600);
+
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv,.pyr').forEach((el,i)=>{el.style.transitionDelay=(i%5*60)+'ms';io.observe(el)});
+
+// counters
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target;
+  if(el.dataset.text){el.innerHTML=el.dataset.text;return}
+  const to=+el.dataset.to,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',t0=performance.now();
+  (function step(now){
+    const p=Math.min((now-t0)/1300,1),v=Math.round(to*(1-Math.pow(1-p,3)));
+    el.textContent=pre+(el.dataset.comma?v.toLocaleString():v)+suf;
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+},{threshold:.5}));
+document.querySelectorAll('.stat .n').forEach(el=>cio.observe(el));
+
+// tabs
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  document.querySelector('.panel[data-p="'+b.dataset.t+'"]').classList.add('on');
+}));
+
+// card spotlight
+document.querySelectorAll('.pj').forEach(c=>c.addEventListener('mousemove',e=>{
+  const r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+}));
+
+// modal
+const mask=document.getElementById('mask');
+document.getElementById('bugBtn').onclick=()=>mask.classList.add('on');
+document.getElementById('mx').onclick=()=>mask.classList.remove('on');
+mask.onclick=e=>{if(e.target===mask)mask.classList.remove('on')};
+addEventListener('keydown',e=>{if(e.key==='Escape')mask.classList.remove('on')});
+
+// active nav
+const nio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
+}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id],footer[id]').forEach(s=>nio.observe(s));
+</script>
 </body>
 </html>
