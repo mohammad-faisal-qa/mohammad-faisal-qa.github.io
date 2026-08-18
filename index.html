@@ -376,7 +376,8 @@ footer .lede{margin:0 auto 26px}
         <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">Currently</h3>
         <ul class="plain">
           <li><b>Sole quality gatekeeper at SuperAGI</b> &mdash; every PR reviewed, every deployment owned.</li>
-          <li><b>Shipped and deployed <a href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Engage</a></b> &mdash; a multi-tenant engagement platform built from scratch as an automation target, running on free-tier infrastructure. Framework next.</li>
+          <li><b>Shipped and deployed <a href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Engage</a></b> &mdash; a multi-tenant engagement platform built from scratch as an automation target, on free-tier infrastructure.</li>
+          <li><b>Automating it in the open</b> &mdash; pytest and Playwright, parallel-safe from the first commit, with <a href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Allure reports published by CI</a> on every push.</li>
           <li><b>Deepening Python automation</b> after years split across Java/Selenium and Python/Playwright.</li>
           <li><b>Open to QA Lead and SDET roles</b> &mdash; Bangalore or remote, 15 days notice.</li>
         </ul>
@@ -592,17 +593,22 @@ footer .lede{margin:0 auto 26px}
         </ul>
         <div class="pjlinks">
           <a class="pjlink" href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Open the live app <span>&rarr;</span></a>
-          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-qa-automation" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
+          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-app" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
         </div>
         <div class="demo-note">Sign in as <b>admin@acme.example.com</b> / <b>Password123!</b><br>Free instance &mdash; the first load takes about a minute while it wakes.</div></div>
-      <div class="pj rv"><div class="pj-top"><h3>QA Automation Framework</h3><span class="badge">Building</span></div>
-        <p class="st">Python &middot; Playwright &middot; pytest-bdd &middot; httpx &middot; Allure &middot; GitHub Actions</p>
+      <div class="pj rv"><div class="pj-top"><h3>QA Automation Framework</h3><span class="badge live">CI green</span></div>
+        <p class="st">Python &middot; pytest &middot; Playwright &middot; pytest-bdd &middot; httpx &middot; Allure &middot; GitHub Actions</p>
+        <p style="margin:0 0 14px"><img src="https://github.com/mohammad-faisal-qa/engage-test-automation/actions/workflows/pr-gate.yml/badge.svg" alt="PR gate build status" style="height:20px;vertical-align:middle"></p>
         <ul>
-          <li><b>Page Object Model with a hybrid BDD layer</b> &mdash; Gherkin for journeys, plain pytest for regression depth.</li>
-          <li><b>API-driven test data</b>, Pydantic response validation, and contract tests against the generated OpenAPI schema.</li>
-          <li><b>Network mocking</b> for error states that are hard to reproduce &mdash; 500s, timeouts, empty responses.</li>
-          <li><b>Parallel execution</b> with pytest-xdist, tag-driven suites, and Allure reports published on every run.</li>
-        </ul></div>
+          <li><b>Parallel-safe by design</b> &mdash; session-scoped reset under a cross-worker file lock, UUID-stamped test data, and every assertion relative so concurrent workers can't collide.</li>
+          <li><b>Service Object Model</b> over httpx with typed Pydantic responses, token caching per identity, and request/response pairs attached to every Allure result with credentials redacted.</li>
+          <li><b>Guards against silent success</b> &mdash; a collection hook that fails the run when a selector deselects everything, and a precondition that detects config drift between the app and the suite.</li>
+          <li><b>CI on every push</b> &mdash; smoke gate, sharded regression, then a report job that publishes <b>even when the build is red</b>. Every report records the exact application commit it tested.</li>
+        </ul>
+        <div class="pjlinks">
+          <a class="pjlink" href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Live test report <span>&rarr;</span></a>
+          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
+        </div></div>
       <div class="pj rv"><div class="pj-top"><h3>QA Lead Artefacts</h3><span class="badge">Building</span></div>
         <p class="st">The written side of quality &mdash; strategy, not just scripts</p>
         <ul>
