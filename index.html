@@ -142,17 +142,13 @@ ul.plain li b{color:var(--ink);font-weight:600}
 .jny-flow{fill:none;stroke:var(--accent-2);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:2 16;opacity:0;transition:opacity .8s .9s}
 .jny.in .jny-flow{opacity:.55;animation:flow 2.4s linear infinite}
 @keyframes flow{to{stroke-dashoffset:-18}}
-.jny-node{fill:var(--bg);stroke:var(--border-2);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.4);transition:opacity .5s,stroke .5s,transform .5s cubic-bezier(.3,1.4,.5,1)}
-.jny.in .jny-node{opacity:1;stroke:var(--accent);transform:scale(1)}
-.jny.in .jny-node:nth-of-type(1){transition-delay:.15s}
-.jny.in .jny-node:nth-of-type(2){transition-delay:.5s}
-.jny.in .jny-node:nth-of-type(3){transition-delay:.85s}
-.jny.in .jny-node:nth-of-type(4){transition-delay:1.2s}
-.jny.in .jny-node:nth-of-type(5){transition-delay:1.55s}
+.jny-node{fill:var(--bg);stroke:var(--border-2);stroke-width:2.5;transform-box:fill-box;transform-origin:center;transition:stroke .4s,filter .4s,transform .45s cubic-bezier(.3,1.5,.5,1)}
+.jny.js .jny-node{transform:scale(.7)}
+.jny.js .jny-node.on{transform:scale(1);stroke:var(--accent);filter:drop-shadow(0 0 8px rgba(91,140,255,.9))}
 
-.jny-card{position:absolute;width:32.4%;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;transform:translateY(-50%);transition:border-color .3s,box-shadow .3s;opacity:0;animation-fill-mode:forwards}
-.jny.in .jny-card{animation:jcard .65s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes jcard{to{opacity:1}}
+.jny-card{position:absolute;width:32.4%;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;transform:translateY(-50%);transition:border-color .3s,box-shadow .3s}
+.jny.js .jny-card{opacity:.34;transform:translateY(-50%) scale(.97);transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.jny.js .jny-card.on{opacity:1;transform:translateY(-50%) scale(1)}
 .jny-card:hover{border-color:var(--accent);box-shadow:0 14px 34px -18px rgba(91,140,255,.65)}
 .jny-card.l{left:3.7%}
 .jny-card.r{left:63.9%}
@@ -166,7 +162,7 @@ ul.plain li b{color:var(--ink);font-weight:600}
   .jny{aspect-ratio:auto;max-width:none;padding-left:26px}
   .jny-svg{display:none}
   .jny::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent),var(--violet))}
-  .jny-card{position:static!important;width:auto;transform:none;margin-bottom:12px;opacity:1;animation:none!important}
+  .jny-card,.jny.js .jny-card{position:static!important;width:auto;transform:none!important;margin-bottom:12px;opacity:1!important;animation:none!important}
   .jny-card::before{content:"";position:absolute;left:0;width:12px;height:12px;margin-top:20px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
 }
 
@@ -729,17 +725,68 @@ function play(){
 }
 setTimeout(play,600);
 
-// journey path draw — length measured at runtime so the curve can change freely
-const jpath=document.getElementById('jpath');
-if(jpath){
-  const len=jpath.getTotalLength();
-  jpath.style.strokeDasharray=len;
-  jpath.style.strokeDashoffset=len;
-  jpath.style.transition='stroke-dashoffset 2.6s cubic-bezier(.4,0,.2,1)';
-  new IntersectionObserver((es,ob)=>es.forEach(e=>{
-    if(e.isIntersecting){jpath.style.strokeDashoffset='0';ob.unobserve(e.target)}
-  }),{threshold:.15}).observe(jpath.closest('.jny'));
-}
+// journey path — drawn in step with scroll position, not as a one-shot animation
+(function(){
+  const jny=document.getElementById('jny'), jpath=document.getElementById('jpath');
+  if(!jny||!jpath) return;
+  const svg=jny.querySelector('.jny-svg');
+  const nodes=[...jny.querySelectorAll('.jny-node')];
+  const cards=[...jny.querySelectorAll('.jny-card')];
+  let len=0, nodeLen=[], ticking=false;
+
+  // Measure lazily: getTotalLength is unreliable while the SVG is display:none,
+  // which it is on mobile until a resize brings it back.
+  function measure(){
+    if(len) return true;
+    try{ len=jpath.getTotalLength(); }catch(e){ return false }
+    if(!len) return false;
+    jpath.style.strokeDasharray=len;
+    // Walk the path to find where each node actually sits along it — the curve
+    // means length is not proportional to vertical position.
+    nodeLen=nodes.map(n=>{
+      const cx=+n.getAttribute('cx'), cy=+n.getAttribute('cy');
+      let best=0, bd=Infinity;
+      for(let l=0;l<=len;l+=4){
+        const p=jpath.getPointAtLength(l);
+        const d=(p.x-cx)*(p.x-cx)+(p.y-cy)*(p.y-cy);
+        if(d<bd){bd=d;best=l}
+      }
+      return best;
+    });
+    jny.classList.add('js');
+    return true;
+  }
+
+  function update(){
+    ticking=false;
+    if(getComputedStyle(svg).display==='none'){   // mobile rail — everything lit
+      nodes.forEach(n=>n.classList.add('on'));
+      cards.forEach(c=>c.classList.add('on'));
+      return;
+    }
+    if(!measure()) return;
+    const r=jny.getBoundingClientRect();
+    const vh=innerHeight||document.documentElement.clientHeight;
+    // The section is only slightly taller than a typical viewport, so mapping
+    // progress to its own height alone compresses the whole animation into a
+    // few hundred pixels. Spread it across the full traversal instead: begins
+    // as the path peeks in at the bottom, completes as the last milestone
+    // settles into the middle of the screen.
+    const span=r.height+vh*0.35;
+    const p=Math.max(0,Math.min(1,(vh*0.9-r.top)/span));
+    jpath.style.strokeDashoffset=len*(1-p);
+    const drawn=len*p;
+    nodes.forEach((n,i)=>{
+      const on=drawn>=nodeLen[i]-6;
+      n.classList.toggle('on',on);
+      if(cards[i]) cards[i].classList.toggle('on',on);
+    });
+  }
+
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+  addEventListener('resize',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}});
+  update();
+})();
 
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
