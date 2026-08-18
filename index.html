@@ -222,6 +222,13 @@ ul.plain li b{color:var(--ink);font-weight:600}
 .pj-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .pj h3{font-size:17px;margin:0;letter-spacing:-.02em}
 .badge{font:700 10px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;padding:5px 8px;border-radius:5px;margin-left:auto;white-space:nowrap;background:rgba(251,191,36,.13);color:var(--warn);border:1px solid rgba(251,191,36,.32)}
+.badge.live{background:rgba(52,211,153,.13);color:var(--good);border-color:rgba(52,211,153,.34)}
+.pjlink{display:inline-flex;align-items:center;gap:6px;font:600 13.5px var(--sans);color:var(--accent-2)}
+.pjlink:hover{color:#fff;gap:9px}
+.pjlink span{transition:.2s}
+.pjlinks{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px}
+.demo-note{margin-top:14px;padding:11px 13px;border-radius:9px;background:var(--surface-2);border:1px solid var(--border);font:500 11.8px/1.65 var(--mono);color:var(--ink-3)}
+.demo-note b{color:var(--accent-2);font-weight:600}
 .pj .st{font:500 11.8px/1.6 var(--mono);color:var(--ink-3);margin:0 0 14px}
 .pj ul{margin:0;padding-left:0;list-style:none}
 .pj li{position:relative;padding-left:18px;margin-bottom:8px;color:var(--ink-2);font-size:14px}
@@ -354,7 +361,7 @@ footer .lede{margin:0 auto 26px}
         <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">Currently</h3>
         <ul class="plain">
           <li><b>Sole quality gatekeeper at SuperAGI</b> &mdash; every PR reviewed, every deployment owned.</li>
-          <li><b>Building this portfolio's framework in the open</b> &mdash; Playwright, pytest-bdd, CI-published Allure reports.</li>
+          <li><b>Shipped and deployed <a href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Engage</a></b> &mdash; a multi-tenant engagement platform built from scratch as an automation target, running on free-tier infrastructure. Framework next.</li>
           <li><b>Deepening Python automation</b> after years split across Java/Selenium and Python/Playwright.</li>
           <li><b>Open to QA Lead and SDET roles</b> &mdash; Bangalore or remote, 15 days notice.</li>
         </ul>
@@ -522,32 +529,38 @@ footer .lede{margin:0 auto 26px}
 <section id="work">
   <div class="wrap">
     <div class="rv">
-      <div class="eyebrow">Work in progress</div>
-      <h2>A framework you can actually read.</h2>
-      <p class="lede">A test automation framework and the demo application it tests &mdash; both built from scratch, both public. Read the code, read the reports, watch the pipeline run.</p>
+      <div class="eyebrow">Portfolio project</div>
+      <h2>Engage &mdash; an app built to be hard to test.</h2>
+      <p class="lede">A customer engagement platform and the automation framework that tests it &mdash; both built from scratch, both public. The app is deliberately awkward in the ways real products are: asynchronous sends you have to poll for, idempotent webhooks, delivery receipts that arrive out of order.</p>
     </div>
     <div class="pjgrid">
+      <div class="pj rv"><div class="pj-top"><h3>Engage &mdash; application under test</h3><span class="badge live">Live</span></div>
+        <p class="st">Python &middot; FastAPI &middot; SQLAlchemy &middot; PostgreSQL &middot; Vanilla JS &middot; Vite</p>
+        <ul>
+          <li><b>8 modules, 27 endpoints</b> &mdash; auth with tenant isolation, contacts, segments, campaigns, onsite notifications, surveys, delivery and webhooks, analytics.</li>
+          <li><b>Deliberately hard to automate</b> &mdash; async send returning 202 with work still queued, idempotent webhooks, out-of-order delivery receipts, a rules engine with frequency capping.</li>
+          <li><b>Testability designed in</b> &mdash; deterministic seed data, a guarded reset endpoint, and query params that force slow responses and failures on demand.</li>
+          <li><b>65 verification checks</b> passing against real managed Postgres.</li>
+        </ul>
+        <div class="pjlinks">
+          <a class="pjlink" href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Open the live app <span>&rarr;</span></a>
+          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-qa-automation" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
+        </div>
+        <div class="demo-note">Sign in as <b>admin@acme.example.com</b> / <b>Password123!</b><br>Free instance &mdash; the first load takes about a minute while it wakes.</div></div>
       <div class="pj rv"><div class="pj-top"><h3>QA Automation Framework</h3><span class="badge">Building</span></div>
-        <p class="st">Python &middot; Playwright &middot; pytest-bdd &middot; Allure &middot; GitHub Actions</p>
+        <p class="st">Python &middot; Playwright &middot; pytest-bdd &middot; httpx &middot; Allure &middot; GitHub Actions</p>
         <ul>
-          <li><b>Page Object Model with a hybrid BDD layer</b> &mdash; Gherkin for journeys, pytest for regression depth.</li>
-          <li><b>API-driven test data</b> plus Pydantic response validation and SQL data checks.</li>
+          <li><b>Page Object Model with a hybrid BDD layer</b> &mdash; Gherkin for journeys, plain pytest for regression depth.</li>
+          <li><b>API-driven test data</b>, Pydantic response validation, and contract tests against the generated OpenAPI schema.</li>
           <li><b>Network mocking</b> for error states that are hard to reproduce &mdash; 500s, timeouts, empty responses.</li>
-          <li><b>Parallel execution</b> with xdist and tag-driven suites.</li>
-        </ul></div>
-      <div class="pj rv"><div class="pj-top"><h3>Demo App Under Test</h3><span class="badge">Building</span></div>
-        <p class="st">A purpose-built target with deliberately difficult automation surfaces</p>
-        <ul>
-          <li>Campaign creation, segmentation and onsite-engagement flows.</li>
-          <li>Searchable paginated grids, drag-and-drop pipelines, dynamic dashboards.</li>
-          <li><b>Deliberate hard cases</b> &mdash; dynamic IDs, iframes, shadow DOM, race conditions.</li>
+          <li><b>Parallel execution</b> with pytest-xdist, tag-driven suites, and Allure reports published on every run.</li>
         </ul></div>
       <div class="pj rv"><div class="pj-top"><h3>QA Lead Artefacts</h3><span class="badge">Building</span></div>
         <p class="st">The written side of quality &mdash; strategy, not just scripts</p>
         <ul>
           <li><b>Test strategy</b> with a risk matrix and entry/exit criteria.</li>
           <li><b>Feature-level test plan</b>, strategy down to specifics.</li>
-          <li><b>Sample defect reports</b> with severity and priority properly distinguished.</li>
+          <li><b>Defect reports</b> from real exploratory sessions against the app above.</li>
           <li><b>Quality metrics</b> &mdash; and how each one gets gamed when used badly.</li>
         </ul></div>
     </div>
