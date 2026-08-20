@@ -322,6 +322,25 @@ footer .lede{margin:0 auto 26px}
 .fine{margin-top:44px;font-size:12.5px;color:var(--ink-3);line-height:1.7}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.lvl{opacity:1;transform:none}}
 </style>
+
+<!-- ===== Analytics: GoatCounter ===== -->
+<script data-goatcounter="https://mohammad-faisal-qa.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<!-- Counts clicks on any link that leaves this page (live app, API docs, repos, test report).
+     Shows up in GoatCounter under Pages, prefixed "click-". -->
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href^="http"]');
+  if (!a || a.hostname === location.hostname) return;
+  if (!window.goatcounter || !window.goatcounter.count) return;
+  window.goatcounter.count({
+    path:  'click-' + a.hostname + a.pathname.replace(/\/$/, ''),
+    title: (a.textContent || '').trim().slice(0, 60),
+    event: true
+  });
+});
+</script>
 </head>
 <body>
 <div id="prog"></div>
