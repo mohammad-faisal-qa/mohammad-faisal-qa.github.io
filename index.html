@@ -621,7 +621,7 @@ footer .lede{margin:0 auto 26px}
 
       <div class="statstrip">
         <div class="sst"><b class="cnt" data-to="43">0</b><span>API endpoints</span></div>
-        <div class="sst"><b class="cnt" data-to="138">0</b><span>automated tests</span></div>
+        <div class="sst"><b class="cnt" data-to="151">0</b><span>automated tests</span></div>
         <div class="sst"><b class="cnt" data-to="3">0</b><span>CI workflows</span></div>
         <div class="sst"><b>&#8377;0</b><span>to run, forever</span></div>
       </div>
@@ -629,7 +629,7 @@ footer .lede{margin:0 auto 26px}
       <div class="tabbar" id="tabbar">
         <span class="ind" id="tabind"></span>
         <button class="tabb on" data-p="app">The application <i>43 endpoints</i></button>
-        <button class="tabb" data-p="fw">The framework <i>138 tests</i></button>
+        <button class="tabb" data-p="fw">The framework <i>151 tests</i></button>
         <button class="tabb" data-p="lead">QA Lead artefacts <i>4 docs</i></button>
       </div>
 
@@ -663,7 +663,7 @@ footer .lede{margin:0 auto 26px}
       <div class="ppanel" id="p-fw">
         <div class="tilegrid">
           <div class="tile metric wide"><h4>The suite <em>green at -n 4</em></h4>
-            <p><b>138 tests</b> &mdash; 74 functional API, 24 contract, 24 Playwright over page and component objects, 16 Gherkin journeys. <b>55 are marked read-only</b> and proven to create and mutate nothing, which is what lets them run nightly against the live demo.</p></div>
+            <p><b>151 tests</b> &mdash; 75 functional API, 24 contract, 24 Playwright over page and component objects, 16 Gherkin journeys, <b>7 that test the framework's own safety guard</b>, and 5 read-only database checks. Green at four-way parallelism in under four minutes. <b>55 are marked read-only</b> and proven to create and mutate nothing, which is what lets them run nightly against the live demo.</p></div>
 
           <div class="tile"><h4>Contract tests that can actually fail <em>proven</em></h4>
             <p>FastAPI generates its schema from the same models it serialises with, so conformance mostly proves the app agrees with itself. <b>I tested that: renaming a field left plain conformance green.</b> Mine declare what the <em>consumer</em> needs.</p></div>
@@ -675,8 +675,9 @@ footer .lede{margin:0 auto 26px}
             <p>Session-scoped reset under a <b>cross-worker file lock</b>, cohort-tagged data, and every assertion relative rather than an absolute count &mdash; the single most common reason a serially-green suite fails at <code>-n 4</code>.</p></div>
           <div class="tile"><h4>Service Object Model <em>architecture</em></h4>
             <p>Over httpx with typed Pydantic responses the tests own themselves, token caching per identity, and <b>every request/response pair attached to the report with credentials redacted</b>. You read a failure instead of reproducing it.</p></div>
-          <div class="tile"><h4>Guards against silent success <em>rare</em></h4>
-            <p>A collection hook that fails the run when a selector deselects everything &mdash; because zero tests exits <b>green</b> &mdash; and a precondition that names config drift between the app and the suite in plain language.</p></div>
+          <div class="tile"><h4>Guards against silent success <em>three of them</em></h4>
+            <p>Zero tests collected exits <b>green</b>, so a hook makes it fail. Config drift between the two repos gets named in plain language. And a stale report is caught by comparing what it contains against what the results hold.</p>
+            <p style="margin-top:8px"><b>Printing a number isn't a control</b> &mdash; someone still has to compare it, and they've already decided the run went fine. It has to return a verdict.</p></div>
           <div class="tile"><h4>Three CI workflows <em>automation</em></h4>
             <p>A gate on every push that publishes Allure <b>even when red</b>, a nightly reset of the public demo at 00:00 UTC, and a read-only run against it thirty minutes later that doubles as an uptime check.</p></div>
           <div class="tile"><h4>Gherkin at the right altitude <em>BDD</em></h4>
@@ -684,12 +685,21 @@ footer .lede{margin:0 auto 26px}
           <div class="tile wide"><h4>No rerun plugin, on purpose <em>policy</em></h4>
             <p>Removing the cheap escape means an intermittent failure must be diagnosed rather than retried away. The cost is that one flake stops the world. <b>It has done so twice, and both times it was a real defect.</b></p></div>
 
+          <div class="tile wide story"><h4>Five database tests, and the argument against them <em>read-only</em></h4>
+            <p>The suite speaks HTTP by default. Five checks are allowed below it, and <b>each one must state in its docstring why the API cannot see the failure</b> &mdash; enforced at collection, so a test without that justification aborts the run rather than being merged. Read-only is guaranteed by Postgres, not by convention: every statement runs inside a <code>BEGIN READ ONLY</code> transaction, proven by a <code>DELETE</code> that the database refuses.</p>
+            <p style="margin-top:9px">They exist because three tables carry a tenant stamp the API never exposes, so a delivery written against the wrong tenant is <b>invisible to every HTTP test</b> and would surface later as one organisation's analytics counting another's sends. <b>The case against is in the pull request too:</b> these tests know the schema, and a schema isn't a contract &mdash; a rename that breaks no client turns them red. The alternative wasn't testing it better; it was not testing it.</p></div>
+          <div class="tile wide story"><h4>When the fix was worse than the hole <em>the read-only leak</em></h4>
+            <p>Read-only lives in the <em>transaction</em>, not the connection &mdash; so with autocommit on, the setting reverted between statements and the guarantee was thinner than claimed. The obvious fix, promoting it to a session-level setting, closed the hole and <b>opened a far worse one</b>: the connection pooler hands those same server connections back to the application, which began serving requests in read-only sessions. <code>/api/test/reset</code> started returning 500 &mdash; the test framework had silently made the system under test unable to write.</p>
+            <p style="margin-top:9px">Reverted, then the pool was <b>drained deliberately</b> &mdash; 25 connections held open and reset one by one &mdash; and cleanliness proven on 20 fresh ones rather than assumed. The real fix was <b>encapsulation, not configuration</b>: the read-only handle is private and the database object exposes reads only, so no caller is ever given a connection it could flip. <b>A test framework that can quietly break the thing it is testing is a worse defect than the gap it was closing.</b></p></div>
+          <div class="tile wide story"><h4>A guard, not just a defect report <em>DEF-005</em></h4>
+            <p>Chasing a broken local database surfaced something worse than the outage: <code>make all</code> resets whatever the app is pointed at, and <b>nothing stopped that being production</b>. One wrong connection string and a full run would wipe the live demo.</p>
+            <p style="margin-top:9px">So the app's health endpoint now reports its database <em>label</em> &mdash; enough to recognise, useless for reaching &mdash; and the reset fixture <b>refuses to run against it</b>, with a deliberate documented override. <b>Seven tests cover the guard itself</b>, including the case that actually bites: localhost, green health, production behind it. A defect report doesn't prevent the defect.</p></div>
           <div class="tile wide story"><h4>A defect found in the framework itself <em>DEF-003</em></h4>
             <p>A wait that always succeeded, because it watched an attribute that survived the page change &mdash; so every assertion after a navigation could read the <em>previous</em> page and pass. <b>A wait that cannot fail is worse than no wait, because it manufactures confidence.</b> Rated High, fixed, and written up like any other defect.</p></div>
 
-          <div class="tile wide story"><h4>A CI flake that turned out to be a real defect <em>DEF-001 / 004</em></h4>
+          <div class="tile wide story"><h4>A CI flake that turned out to be a real defect <em>DEF-001 / 004 &mdash; closed</em></h4>
             <p>An intermittent red gate survived a keep-alive fix and a retry policy before diagnostics finally named the request: fixture cleanup hitting an unhandled integrity error <b>already filed as a cosmetic Medium</b>. Under CI's request density the connection was reset mid-response, and because it ran in teardown it failed a test that had already passed.</p>
-            <p style="margin-top:9px"><b>Re-rated High on its own evidence.</b> Cleanup is now best-effort, because an exception in teardown must never fail a passing test &mdash; and the application defect stays open, so the fix belongs to the code that owns it rather than deleting the evidence.</p></div>
+            <p style="margin-top:9px"><b>Re-rated High on its own evidence, then fixed.</b> Deleting a contact with delivery history now returns <b>409 with a message that says why</b>, instead of a bare 500. The regression test was <b>watched failing before the fix and passing after</b> &mdash; a regression test never seen red isn't one. Both defects closed; the report keeps the Medium&nbsp;&rarr;&nbsp;High history, because the re-rating is the lesson.</p></div>
         </div>
         <div class="panel-foot">
           <a class="pjlink" href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Live test report <span>&rarr;</span></a>
@@ -699,7 +709,7 @@ footer .lede{margin:0 auto 26px}
         <div class="demo-note"><b>Run it yourself &mdash; three commands.</b><br>
           <code>git clone https://github.com/mohammad-faisal-qa/engage-test-automation</code><br>
           <code>make install &amp;&amp; playwright install chromium</code><br>
-          <code>make smoke</code> &mdash; then <code>make all</code> for the full 138 at <code>-n 4</code>.<br>
+          <code>make smoke</code> &mdash; then <code>make all</code> for the full 151 at <code>-n 4</code>.<br>
           It also runs on its own every night at 06:00 IST against the live demo, so the report is never older than a day.</div>
       </div>
 
