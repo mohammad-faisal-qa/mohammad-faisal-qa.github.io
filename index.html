@@ -250,6 +250,41 @@ ul.plain li b{color:var(--ink);font-weight:600}
 .pj li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--violet);opacity:.85}
 .pj li b{color:var(--ink);font-weight:600}
 
+/* ===== work · project showcase ===== */
+.pshow{position:relative}
+.statstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 22px}
+.sst{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:16px 18px;position:relative;overflow:hidden;transition:.3s}
+.sst::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),var(--violet));opacity:.75}
+.sst:hover{transform:translateY(-3px);border-color:var(--border-2)}
+.sst b{display:block;font:800 27px/1 var(--sans);letter-spacing:-.04em;background:linear-gradient(120deg,#fff,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sst span{display:block;margin-top:5px;font:600 11px/1.35 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tabbar{position:relative;display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:18px}
+.tabbar .ind{position:absolute;top:5px;bottom:5px;left:5px;width:0;border-radius:9px;background:linear-gradient(120deg,rgba(91,140,255,.20),rgba(167,139,250,.16));border:1px solid rgba(91,140,255,.42);transition:left .42s cubic-bezier(.66,0,.2,1),width .42s cubic-bezier(.66,0,.2,1);pointer-events:none}
+.tabb{flex:1;position:relative;z-index:2;background:none;border:0;cursor:pointer;padding:11px 12px;border-radius:9px;color:var(--ink-3);font:600 13.5px var(--sans);letter-spacing:-.01em;transition:color .25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.tabb:hover{color:var(--ink-2)}
+.tabb.on{color:var(--ink)}
+.tabb i{font:700 10px/1 var(--mono);font-style:normal;padding:3px 6px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink-3);transition:.25s}
+.tabb.on i{color:var(--accent-2);border-color:rgba(91,140,255,.4);background:rgba(91,140,255,.1)}
+.ppanel{display:none}
+.ppanel.on{display:block}
+.tilegrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:17px 19px;position:relative;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.3,1),border-color .3s,box-shadow .3s}
+.ppanel.on .tile{opacity:1;transform:none}
+.tile::after{content:"";position:absolute;inset:0;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%),rgba(91,140,255,.11),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none}
+.tile:hover::after{opacity:1}
+.tile:hover{border-color:var(--border-2);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.32)}
+.tile h4{margin:0 0 6px;font-size:14.5px;letter-spacing:-.015em;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tile h4 em{font-style:normal;font:700 9.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 6px;border-radius:4px;background:rgba(167,139,250,.13);color:var(--violet);border:1px solid rgba(167,139,250,.3)}
+.tile p{margin:0;font-size:13.4px;line-height:1.6;color:var(--ink-2)}
+.tile p b{color:var(--ink);font-weight:600}
+.tile code{font:500 12px var(--mono);color:var(--accent-2);background:rgba(91,140,255,.08);border:1px solid rgba(91,140,255,.16);border-radius:4px;padding:1px 4px}
+.tile.wide{grid-column:1/-1}
+.tile.story{background:linear-gradient(150deg,rgba(91,140,255,.07),var(--surface) 55%);border-color:rgba(91,140,255,.26)}
+.tile.story h4 em{background:rgba(52,211,153,.13);color:var(--good);border-color:rgba(52,211,153,.32)}
+.tile.metric p b:first-of-type{font:800 19px/1 var(--sans);color:var(--accent-2);letter-spacing:-.03em}
+.panel-foot{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:16px}
+@media(max-width:860px){.statstrip{grid-template-columns:1fr 1fr}.tilegrid{grid-template-columns:1fr}.tabbar{flex-direction:column}.tabbar .ind{display:none}.tabb{justify-content:flex-start}.tabb.on{background:rgba(91,140,255,.13)}}
+
 /* education */
 .edu{display:flex;flex-wrap:wrap;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 24px}
 .edu .cap{font-size:26px}
@@ -582,38 +617,81 @@ footer .lede{margin:0 auto 26px}
       <h2>Engage &mdash; an app built to be hard to test.</h2>
       <p class="lede">A customer engagement platform and the automation framework that tests it &mdash; both built from scratch, both public. The app is deliberately awkward in the ways real products are: asynchronous sends you have to poll for, idempotent webhooks, delivery receipts that arrive out of order.</p>
     </div>
-    <div class="pjgrid">
-      <div class="pj rv"><div class="pj-top"><h3>Engage &mdash; application under test</h3><span class="badge live">Live</span></div>
-        <p class="st">Python &middot; FastAPI &middot; SQLAlchemy &middot; PostgreSQL &middot; Vanilla JS &middot; Vite</p>
-        <ul>
-          <li><b>8 modules, 43 endpoints, 11 tables</b> &mdash; auth, contacts, segments, campaigns, onsite notifications, surveys, delivery and webhooks, analytics. Two tenants sharing one database, isolated through a <em>single</em> scoping helper rather than a filter repeated on every query.</li>
-          <li><b>Deliberately hard to automate</b> &mdash; async send returning 202 with work still queued, webhook idempotency enforced by a database constraint rather than hoped for in code, out-of-order delivery receipts that must not regress state, and a rules engine with frequency capping measured in a rolling window.</li>
-          <li><b>Testability designed in</b> &mdash; <code>data-testid</code> on every interactive element, three guarded test-support endpoints that fail closed when unconfigured, and seed data deterministic down to a fixed epoch. One table is deliberately left empty, because its meaning depends on the current time.</li>
-          <li><b>65 verification checks</b> passing against real managed Postgres.</li>
-        </ul>
-        <div class="pjlinks">
+    <div class="pshow rv">
+
+      <div class="statstrip">
+        <div class="sst"><b class="cnt" data-to="43">0</b><span>API endpoints</span></div>
+        <div class="sst"><b class="cnt" data-to="138">0</b><span>automated tests</span></div>
+        <div class="sst"><b class="cnt" data-to="3">0</b><span>CI workflows</span></div>
+        <div class="sst"><b>&#8377;0</b><span>to run, forever</span></div>
+      </div>
+
+      <div class="tabbar" id="tabbar">
+        <span class="ind" id="tabind"></span>
+        <button class="tabb on" data-p="app">The application <i>43 endpoints</i></button>
+        <button class="tabb" data-p="fw">The framework <i>138 tests</i></button>
+        <button class="tabb" data-p="lead">QA Lead artefacts <i>4 docs</i></button>
+      </div>
+
+      <!-- ============ APP ============ -->
+      <div class="ppanel on" id="p-app">
+        <div class="tilegrid">
+          <div class="tile metric"><h4>Scope <em>built from zero</em></h4>
+            <p><b>8 modules · 43 endpoints · 11 tables.</b> Auth, contacts, segments, campaigns, onsite notifications, surveys, delivery and webhooks, analytics.</p></div>
+          <div class="tile"><h4>Two tenants, one database <em>isolation</em></h4>
+            <p>Separated through a <b>single scoping helper</b> rather than a filter repeated on every query &mdash; so the attack surface is one function, not forty-three endpoints.</p></div>
+          <div class="tile wide story"><h4>Deliberately hard to automate <em>the point of it</em></h4>
+            <p>An async send returning <b>202</b> with work still queued, so tests must poll rather than sleep. Webhook idempotency enforced by a <b>database constraint</b> rather than hoped for in code. Out-of-order delivery receipts that must not regress state. A rules engine with frequency capping measured in a rolling window. You cannot force any of this on a public demo site you don't own.</p></div>
+          <div class="tile"><h4>Testability designed in <em>shift-left</em></h4>
+            <p><code>data-testid</code> on every interactive element, and three guarded test-support endpoints that <b>fail closed</b> when unconfigured &mdash; the affordances a QA lead should be asking a dev team for.</p></div>
+          <div class="tile"><h4>Seed data down to the epoch <em>determinism</em></h4>
+            <p>Every id and timestamp is fixed. <b>One table is deliberately left empty</b>, because frequency capping counts in a rolling window from <em>now</em> &mdash; a seeded row would age and break reproducibility.</p></div>
+          <div class="tile"><h4>Verified against real Postgres <em>65 checks</em></h4>
+            <p>Two standalone verification scripts &mdash; 26 and 39 assertions &mdash; run against a live managed database, not SQLite.</p></div>
+          <div class="tile"><h4>Postgres everywhere, never SQLite <em>trade-off</em></h4>
+            <p><code>LIKE</code> case-sensitivity and sequence behaviour differ between them, and <b>both bugs are invisible until deploy</b>. The cost: local runs cross the network and are ~10&times; slower than CI.</p></div>
+        </div>
+        <div class="panel-foot">
           <a class="pjlink" href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Open the live app <span>&rarr;</span></a>
+          <a class="pjlink" href="https://engage-api-b6yg.onrender.com/docs" target="_blank" rel="noopener noreferrer">Browse the API <span>&rarr;</span></a>
           <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-app" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
         </div>
-        <div class="demo-note">Sign in as <b>admin@acme.example.com</b> / <b>Password123!</b><br>Free instance &mdash; the first load takes about a minute while it wakes.</div></div>
-      <div class="pj rv"><div class="pj-top"><h3>Test Automation Framework</h3><span class="badge live">CI green</span></div>
-        <p class="st">Python &middot; pytest &middot; Playwright &middot; httpx &middot; Pydantic &middot; pytest-xdist &middot; Allure &middot; GitHub Actions</p>
-        <p style="margin:0 0 14px"><img src="https://github.com/mohammad-faisal-qa/engage-test-automation/actions/workflows/pr-gate.yml/badge.svg" alt="PR gate build status" style="height:20px;vertical-align:middle"></p>
-        <ul>
-          <li><b>138 tests</b> &mdash; <b>74 functional API</b>, <b>24 contract</b>, <b>24 Playwright</b> over page and component objects, <b>16 Gherkin</b> journeys. Green at four-way parallelism. <b>55 are marked read-only</b> and proven to create and mutate nothing, which is what lets them run nightly against the live demo.</li>
-          <li><b>Contract tests that aren't tautological</b> &mdash; FastAPI generates its schema from the same models it serialises with, so validating one against the other mostly proves the app agrees with itself. <b>I tested that claim: renaming a field left plain conformance green.</b> These declare what the <em>consumer</em> depends on instead, so a rename or a widened enum fails once, by name.</li>
-          <li><b>Error states forced, not waited for</b> &mdash; request interception produces the 500s, hangs and malformed payloads the app won't produce on demand, and every assertion is that the UI <em>says something</em>: a blank table is worse than an error, because the reader concludes there's no data rather than that something broke.</li>
-          <li><b>Charts asserted on payload, not pixels</b> &mdash; analytics tests intercept the response and compare it to what the page rendered. No bar geometry is measured anywhere.</li>
-          <li><b>Parallel-safe by design</b> &mdash; session-scoped reset under a cross-worker file lock, UUID-stamped test data, and every assertion relative so concurrent workers can't collide.</li>
-          <li><b>Service Object Model</b> over httpx with typed Pydantic responses, token caching per identity, and request/response pairs attached to every Allure result with credentials redacted.</li>
-          <li><b>Guards against silent success</b> &mdash; a collection hook that fails the run when a selector deselects everything, and a precondition that detects config drift between the app and the suite.</li>
-          <li><b>Three CI workflows</b> &mdash; a gate on every push publishing Allure reports <b>even when red</b>, a nightly reset of the public demo, and a read-only smoke run against it half an hour later that doubles as an uptime check.</li>
-          <li><b>Gherkin at the right altitude</b> &mdash; scenarios written in the language of the product, not the page. Reaching everyone but leaving the campaign <em>running</em> fails separately from reporting <em>sent</em> having reached nobody, because those are two different defects.</li>
-          <li><b>A defect found in the framework itself</b> &mdash; a wait that always succeeded, because it watched an attribute that survived the page change. Every assertion after a navigation could read the <em>previous</em> page and pass. <b>A wait that cannot fail is worse than no wait, because it manufactures confidence.</b> Rated High and fixed.</li>
-          <li><b>No rerun plugin, on purpose</b> &mdash; removing the cheap escape means an intermittent failure has to be diagnosed rather than retried away. The cost is that one flake stops the world. It has done so twice, and <b>both times it was a real defect</b>.</li>
-          <li><b>A CI flake that turned out to be a real defect</b> &mdash; an intermittent red gate survived a keep-alive fix and a retry policy before diagnostics named the request: fixture cleanup hitting an unhandled integrity error already filed as a cosmetic Medium. Under CI's request density the connection was reset mid-response, and because it ran in teardown it failed a test that had already passed. Re-rated High on its own evidence. Cleanup is now best-effort; <b>the application defect stays open</b>, so the fix belongs to the code that owns it rather than deleting the evidence.</li>
-        </ul>
-        <div class="pjlinks">
+        <div class="demo-note">Sign in as <b>admin@acme.example.com</b> / <b>Password123!</b><br>Free instance &mdash; the first load takes about a minute while it wakes. That note is deliberate: a blank screen makes a visitor think you shipped something broken.</div>
+      </div>
+
+      <!-- ============ FRAMEWORK ============ -->
+      <div class="ppanel" id="p-fw">
+        <div class="tilegrid">
+          <div class="tile metric wide"><h4>The suite <em>green at -n 4</em></h4>
+            <p><b>138 tests</b> &mdash; 74 functional API, 24 contract, 24 Playwright over page and component objects, 16 Gherkin journeys. <b>55 are marked read-only</b> and proven to create and mutate nothing, which is what lets them run nightly against the live demo.</p></div>
+
+          <div class="tile"><h4>Contract tests that can actually fail <em>proven</em></h4>
+            <p>FastAPI generates its schema from the same models it serialises with, so conformance mostly proves the app agrees with itself. <b>I tested that: renaming a field left plain conformance green.</b> Mine declare what the <em>consumer</em> needs.</p></div>
+          <div class="tile"><h4>Error states forced, not waited for <em>interception</em></h4>
+            <p>Route interception produces the 500s, hangs and malformed payloads the app won't produce on demand. Every assertion is that the UI <b>says something</b> &mdash; a blank table is worse than an error, because the reader concludes there's no data rather than that something broke.</p></div>
+          <div class="tile"><h4>Payload, not pixels <em>analytics</em></h4>
+            <p>Charts are asserted by intercepting the response and comparing it to the rendered text. <b>No bar geometry is measured anywhere</b> &mdash; I'm testing the transformation, not the chart library.</p></div>
+          <div class="tile"><h4>Parallel-safe by design <em>4 workers</em></h4>
+            <p>Session-scoped reset under a <b>cross-worker file lock</b>, cohort-tagged data, and every assertion relative rather than an absolute count &mdash; the single most common reason a serially-green suite fails at <code>-n 4</code>.</p></div>
+          <div class="tile"><h4>Service Object Model <em>architecture</em></h4>
+            <p>Over httpx with typed Pydantic responses the tests own themselves, token caching per identity, and <b>every request/response pair attached to the report with credentials redacted</b>. You read a failure instead of reproducing it.</p></div>
+          <div class="tile"><h4>Guards against silent success <em>rare</em></h4>
+            <p>A collection hook that fails the run when a selector deselects everything &mdash; because zero tests exits <b>green</b> &mdash; and a precondition that names config drift between the app and the suite in plain language.</p></div>
+          <div class="tile"><h4>Three CI workflows <em>automation</em></h4>
+            <p>A gate on every push that publishes Allure <b>even when red</b>, a nightly reset of the public demo at 00:00 UTC, and a read-only run against it thirty minutes later that doubles as an uptime check.</p></div>
+          <div class="tile"><h4>Gherkin at the right altitude <em>BDD</em></h4>
+            <p>Scenarios in the language of the product, not the page. Reaching everyone but leaving the campaign <em>running</em> fails <b>separately</b> from reporting <em>sent</em> having reached nobody &mdash; two different defects, two different assertions.</p></div>
+          <div class="tile wide"><h4>No rerun plugin, on purpose <em>policy</em></h4>
+            <p>Removing the cheap escape means an intermittent failure must be diagnosed rather than retried away. The cost is that one flake stops the world. <b>It has done so twice, and both times it was a real defect.</b></p></div>
+
+          <div class="tile wide story"><h4>A defect found in the framework itself <em>DEF-003</em></h4>
+            <p>A wait that always succeeded, because it watched an attribute that survived the page change &mdash; so every assertion after a navigation could read the <em>previous</em> page and pass. <b>A wait that cannot fail is worse than no wait, because it manufactures confidence.</b> Rated High, fixed, and written up like any other defect.</p></div>
+
+          <div class="tile wide story"><h4>A CI flake that turned out to be a real defect <em>DEF-001 / 004</em></h4>
+            <p>An intermittent red gate survived a keep-alive fix and a retry policy before diagnostics finally named the request: fixture cleanup hitting an unhandled integrity error <b>already filed as a cosmetic Medium</b>. Under CI's request density the connection was reset mid-response, and because it ran in teardown it failed a test that had already passed.</p>
+            <p style="margin-top:9px"><b>Re-rated High on its own evidence.</b> Cleanup is now best-effort, because an exception in teardown must never fail a passing test &mdash; and the application defect stays open, so the fix belongs to the code that owns it rather than deleting the evidence.</p></div>
+        </div>
+        <div class="panel-foot">
           <a class="pjlink" href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Live test report <span>&rarr;</span></a>
           <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation/actions" target="_blank" rel="noopener noreferrer">Every run, including the red ones <span>&rarr;</span></a>
           <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
@@ -621,20 +699,30 @@ footer .lede{margin:0 auto 26px}
         <div class="demo-note"><b>Run it yourself &mdash; three commands.</b><br>
           <code>git clone https://github.com/mohammad-faisal-qa/engage-test-automation</code><br>
           <code>make install &amp;&amp; playwright install chromium</code><br>
-          <code>make smoke</code> &nbsp;&mdash;&nbsp; then <code>make all</code> for the full 138 at <code>-n 4</code>.<br>
-          The suite also runs on its own every night at 06:00 IST against the live demo above, so the
-          report is never older than a day.</div></div>
-      <div class="pj rv"><div class="pj-top"><h3>QA Lead Artefacts</h3><span class="badge live">Published</span></div>
-        <p class="st">The written side of quality &mdash; strategy, not just scripts</p>
-        <ul>
-          <li><b>Test strategy</b> &mdash; a ten-risk matrix driving what gets automated at which level, entry and exit criteria, environments and tooling, and a section on what we deliberately <em>don't</em> automate and why.</li>
-          <li><b>Feature-level test plan</b> for campaigns &mdash; the strategy taken down to specifics for the app's most stateful module.</li>
-          <li><b>Four defect reports</b> from real findings &mdash; one re-rated Medium to High after CI produced the evidence its original triage lacked, and <b>one against the framework itself</b>. Each carries severity and priority separately, and a <em>"why testing missed it"</em> section.</li>
-          <li><b>Quality metrics</b> &mdash; five of them, each paired with how it gets gamed when it becomes a target.</li>
-        </ul>
-        <div class="pjlinks">
+          <code>make smoke</code> &mdash; then <code>make all</code> for the full 138 at <code>-n 4</code>.<br>
+          It also runs on its own every night at 06:00 IST against the live demo, so the report is never older than a day.</div>
+      </div>
+
+      <!-- ============ LEAD ============ -->
+      <div class="ppanel" id="p-lead">
+        <div class="tilegrid">
+          <div class="tile"><h4>Test strategy <em>10-risk matrix</em></h4>
+            <p>What gets automated at which level, driven by likelihood &times; impact. Entry and exit criteria, environments, tooling rationale &mdash; and a section on <b>what we deliberately don't automate, and why</b>.</p></div>
+          <div class="tile"><h4>Feature-level test plan <em>campaigns</em></h4>
+            <p>The strategy taken down to specifics for the app's most stateful module, including a failure table whose <em>"detectable from a status code alone"</em> column reads <b>no on every row</b>.</p></div>
+          <div class="tile"><h4>Four defect reports <em>real findings</em></h4>
+            <p>Severity and priority recorded <b>separately</b>, each with a root cause and a <em>"why testing missed it"</em> section. One re-rated Medium&nbsp;&rarr;&nbsp;High from CI evidence, and <b>one against the framework itself</b>.</p></div>
+          <div class="tile"><h4>Quality metrics <em>five of them</em></h4>
+            <p>Escaped defects, automation coverage, flake rate, mean time to detect, suite duration &mdash; each paired with <b>how it gets gamed</b> when it becomes a target. Plus four things deliberately not tracked.</p></div>
+          <div class="tile wide story"><h4>Twenty-four design decisions, each with its price <em>the real artefact</em></h4>
+            <p>Every significant choice is recorded with the alternative that was rejected and <b>what the decision cost</b> &mdash; two repositories, never pinning the app in CI, no rerun plugin, retrying only idempotent methods, Chromium only. Including one that <b>reverses an earlier decision of my own</b>, and says so.</p></div>
+        </div>
+        <div class="panel-foot">
           <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation/tree/main/docs" target="_blank" rel="noopener noreferrer">Read the documents <span>&rarr;</span></a>
-        </div></div>
+          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation/tree/main/docs/defects" target="_blank" rel="noopener noreferrer">The defect reports <span>&rarr;</span></a>
+        </div>
+      </div>
+
     </div>
     <div class="rv" style="margin-top:26px;text-align:center">
       <button class="btn" id="bugBtn">Read a sample incident report &mdash; SEV-1, with RCA and detection gap</button>
@@ -828,18 +916,46 @@ const cio=new IntersectionObserver(es=>es.forEach(e=>{
     if(p<1)requestAnimationFrame(step);
   })(t0);
 },{threshold:.5}));
-document.querySelectorAll('.stat .n').forEach(el=>cio.observe(el));
+document.querySelectorAll('.stat .n, .sst .cnt').forEach(el=>cio.observe(el));
 
 // tabs
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('#experience .panel').forEach(x=>x.classList.remove('on'));
   b.classList.add('on');
-  document.querySelector('.panel[data-p="'+b.dataset.t+'"]').classList.add('on');
+  document.querySelector('#experience .panel[data-p="'+b.dataset.t+'"]').classList.add('on');
 }));
 
+// project showcase tabs
+(function(){
+  const bar=document.getElementById('tabbar'); if(!bar) return;
+  const ind=document.getElementById('tabind'), btns=[...bar.querySelectorAll('.tabb')];
+  function move(b){ind.style.left=b.offsetLeft+'px';ind.style.width=b.offsetWidth+'px';}
+  function stagger(panel){
+    panel.querySelectorAll('.tile').forEach((t,i)=>{
+      t.style.transition='none';t.style.opacity='0';t.style.transform='translateY(14px)';
+      void t.offsetWidth;
+      t.style.transition='';t.style.transitionDelay=(i*45)+'ms';
+      t.style.opacity='';t.style.transform='';
+    });
+  }
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    if(b.classList.contains('on'))return;
+    btns.forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.ppanel').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const p=document.getElementById('p-'+b.dataset.p);
+    p.classList.add('on'); move(b); stagger(p);
+  }));
+  const set=()=>move(bar.querySelector('.tabb.on'));
+  set(); window.addEventListener('resize',set);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(set);
+  setTimeout(set,400);
+  document.querySelectorAll('#p-app .tile').forEach((t,i)=>t.style.transitionDelay=(i*45)+'ms');
+})();
+
 // card spotlight
-document.querySelectorAll('.pj').forEach(c=>c.addEventListener('mousemove',e=>{
+document.querySelectorAll('.pj,.tile').forEach(c=>c.addEventListener('mousemove',e=>{
   const r=c.getBoundingClientRect();
   c.style.setProperty('--mx',(e.clientX-r.left)+'px');
   c.style.setProperty('--my',(e.clientY-r.top)+'px');
