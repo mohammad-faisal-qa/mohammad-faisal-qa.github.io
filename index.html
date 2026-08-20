@@ -229,7 +229,7 @@ ul.plain li b{color:var(--ink);font-weight:600}
 .chip.hi{border-color:rgba(91,140,255,.45);color:var(--accent-2);background:rgba(91,140,255,.09)}
 
 /* work */
-.pjgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.pjgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:start}
 .pj{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:.3s}
 .pj::after{content:"";position:absolute;inset:0;background:radial-gradient(480px circle at var(--mx,50%) var(--my,0%),rgba(91,140,255,.1),transparent 42%);opacity:0;transition:opacity .35s;pointer-events:none}
 .pj:hover::after{opacity:1}
@@ -586,9 +586,9 @@ footer .lede{margin:0 auto 26px}
       <div class="pj rv"><div class="pj-top"><h3>Engage &mdash; application under test</h3><span class="badge live">Live</span></div>
         <p class="st">Python &middot; FastAPI &middot; SQLAlchemy &middot; PostgreSQL &middot; Vanilla JS &middot; Vite</p>
         <ul>
-          <li><b>8 modules, 27 endpoints</b> &mdash; auth with tenant isolation, contacts, segments, campaigns, onsite notifications, surveys, delivery and webhooks, analytics.</li>
-          <li><b>Deliberately hard to automate</b> &mdash; async send returning 202 with work still queued, idempotent webhooks, out-of-order delivery receipts, a rules engine with frequency capping.</li>
-          <li><b>Testability designed in</b> &mdash; deterministic seed data, a guarded reset endpoint, and query params that force slow responses and failures on demand.</li>
+          <li><b>8 modules, 43 endpoints, 11 tables</b> &mdash; auth, contacts, segments, campaigns, onsite notifications, surveys, delivery and webhooks, analytics. Two tenants sharing one database, isolated through a <em>single</em> scoping helper rather than a filter repeated on every query.</li>
+          <li><b>Deliberately hard to automate</b> &mdash; async send returning 202 with work still queued, webhook idempotency enforced by a database constraint rather than hoped for in code, out-of-order delivery receipts that must not regress state, and a rules engine with frequency capping measured in a rolling window.</li>
+          <li><b>Testability designed in</b> &mdash; <code>data-testid</code> on every interactive element, three guarded test-support endpoints that fail closed when unconfigured, and seed data deterministic down to a fixed epoch. One table is deliberately left empty, because its meaning depends on the current time.</li>
           <li><b>65 verification checks</b> passing against real managed Postgres.</li>
         </ul>
         <div class="pjlinks">
@@ -596,27 +596,45 @@ footer .lede{margin:0 auto 26px}
           <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-app" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
         </div>
         <div class="demo-note">Sign in as <b>admin@acme.example.com</b> / <b>Password123!</b><br>Free instance &mdash; the first load takes about a minute while it wakes.</div></div>
-      <div class="pj rv"><div class="pj-top"><h3>QA Automation Framework</h3><span class="badge live">CI green</span></div>
-        <p class="st">Python &middot; pytest &middot; Playwright &middot; pytest-bdd &middot; httpx &middot; Allure &middot; GitHub Actions</p>
+      <div class="pj rv"><div class="pj-top"><h3>Test Automation Framework</h3><span class="badge live">CI green</span></div>
+        <p class="st">Python &middot; pytest &middot; Playwright &middot; httpx &middot; Pydantic &middot; pytest-xdist &middot; Allure &middot; GitHub Actions</p>
         <p style="margin:0 0 14px"><img src="https://github.com/mohammad-faisal-qa/engage-test-automation/actions/workflows/pr-gate.yml/badge.svg" alt="PR gate build status" style="height:20px;vertical-align:middle"></p>
         <ul>
+          <li><b>138 tests</b> &mdash; <b>74 functional API</b>, <b>24 contract</b>, <b>24 Playwright</b> over page and component objects, <b>16 Gherkin</b> journeys. Green at four-way parallelism. <b>55 are marked read-only</b> and proven to create and mutate nothing, which is what lets them run nightly against the live demo.</li>
+          <li><b>Contract tests that aren't tautological</b> &mdash; FastAPI generates its schema from the same models it serialises with, so validating one against the other mostly proves the app agrees with itself. <b>I tested that claim: renaming a field left plain conformance green.</b> These declare what the <em>consumer</em> depends on instead, so a rename or a widened enum fails once, by name.</li>
+          <li><b>Error states forced, not waited for</b> &mdash; request interception produces the 500s, hangs and malformed payloads the app won't produce on demand, and every assertion is that the UI <em>says something</em>: a blank table is worse than an error, because the reader concludes there's no data rather than that something broke.</li>
+          <li><b>Charts asserted on payload, not pixels</b> &mdash; analytics tests intercept the response and compare it to what the page rendered. No bar geometry is measured anywhere.</li>
           <li><b>Parallel-safe by design</b> &mdash; session-scoped reset under a cross-worker file lock, UUID-stamped test data, and every assertion relative so concurrent workers can't collide.</li>
           <li><b>Service Object Model</b> over httpx with typed Pydantic responses, token caching per identity, and request/response pairs attached to every Allure result with credentials redacted.</li>
           <li><b>Guards against silent success</b> &mdash; a collection hook that fails the run when a selector deselects everything, and a precondition that detects config drift between the app and the suite.</li>
-          <li><b>CI on every push</b> &mdash; smoke gate, sharded regression, then a report job that publishes <b>even when the build is red</b>. Every report records the exact application commit it tested.</li>
+          <li><b>Three CI workflows</b> &mdash; a gate on every push publishing Allure reports <b>even when red</b>, a nightly reset of the public demo, and a read-only smoke run against it half an hour later that doubles as an uptime check.</li>
+          <li><b>Gherkin at the right altitude</b> &mdash; scenarios written in the language of the product, not the page. Reaching everyone but leaving the campaign <em>running</em> fails separately from reporting <em>sent</em> having reached nobody, because those are two different defects.</li>
+          <li><b>A defect found in the framework itself</b> &mdash; a wait that always succeeded, because it watched an attribute that survived the page change. Every assertion after a navigation could read the <em>previous</em> page and pass. <b>A wait that cannot fail is worse than no wait, because it manufactures confidence.</b> Rated High and fixed.</li>
+          <li><b>No rerun plugin, on purpose</b> &mdash; removing the cheap escape means an intermittent failure has to be diagnosed rather than retried away. The cost is that one flake stops the world. It has done so twice, and <b>both times it was a real defect</b>.</li>
+          <li><b>A CI flake that turned out to be a real defect</b> &mdash; an intermittent red gate survived a keep-alive fix and a retry policy before diagnostics named the request: fixture cleanup hitting an unhandled integrity error already filed as a cosmetic Medium. Under CI's request density the connection was reset mid-response, and because it ran in teardown it failed a test that had already passed. Re-rated High on its own evidence. Cleanup is now best-effort; <b>the application defect stays open</b>, so the fix belongs to the code that owns it rather than deleting the evidence.</li>
         </ul>
         <div class="pjlinks">
           <a class="pjlink" href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Live test report <span>&rarr;</span></a>
+          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation/actions" target="_blank" rel="noopener noreferrer">Every run, including the red ones <span>&rarr;</span></a>
           <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation" target="_blank" rel="noopener noreferrer">Repository <span>&rarr;</span></a>
-        </div></div>
-      <div class="pj rv"><div class="pj-top"><h3>QA Lead Artefacts</h3><span class="badge">Building</span></div>
+        </div>
+        <div class="demo-note"><b>Run it yourself &mdash; three commands.</b><br>
+          <code>git clone https://github.com/mohammad-faisal-qa/engage-test-automation</code><br>
+          <code>make install &amp;&amp; playwright install chromium</code><br>
+          <code>make smoke</code> &nbsp;&mdash;&nbsp; then <code>make all</code> for the full 138 at <code>-n 4</code>.<br>
+          The suite also runs on its own every night at 06:00 IST against the live demo above, so the
+          report is never older than a day.</div></div>
+      <div class="pj rv"><div class="pj-top"><h3>QA Lead Artefacts</h3><span class="badge live">Published</span></div>
         <p class="st">The written side of quality &mdash; strategy, not just scripts</p>
         <ul>
-          <li><b>Test strategy</b> with a risk matrix and entry/exit criteria.</li>
-          <li><b>Feature-level test plan</b>, strategy down to specifics.</li>
-          <li><b>Defect reports</b> from real exploratory sessions against the app above.</li>
-          <li><b>Quality metrics</b> &mdash; and how each one gets gamed when used badly.</li>
-        </ul></div>
+          <li><b>Test strategy</b> &mdash; a ten-risk matrix driving what gets automated at which level, entry and exit criteria, environments and tooling, and a section on what we deliberately <em>don't</em> automate and why.</li>
+          <li><b>Feature-level test plan</b> for campaigns &mdash; the strategy taken down to specifics for the app's most stateful module.</li>
+          <li><b>Four defect reports</b> from real findings &mdash; one re-rated Medium to High after CI produced the evidence its original triage lacked, and <b>one against the framework itself</b>. Each carries severity and priority separately, and a <em>"why testing missed it"</em> section.</li>
+          <li><b>Quality metrics</b> &mdash; five of them, each paired with how it gets gamed when it becomes a target.</li>
+        </ul>
+        <div class="pjlinks">
+          <a class="pjlink" href="https://github.com/mohammad-faisal-qa/engage-test-automation/tree/main/docs" target="_blank" rel="noopener noreferrer">Read the documents <span>&rarr;</span></a>
+        </div></div>
     </div>
     <div class="rv" style="margin-top:26px;text-align:center">
       <button class="btn" id="bugBtn">Read a sample incident report &mdash; SEV-1, with RCA and detection gap</button>
