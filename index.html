@@ -349,7 +349,7 @@ document.addEventListener('click', function (e) {
   <div class="nav-in">
     <span class="logo">MF<em>.</em></span>
     <div class="nav-links">
-      <a href="#about">About</a><a href="#experience">Experience</a><a href="#approach">Approach</a><a href="#skills">Skills</a><a href="#work">Work</a>
+      <a href="#experience">Experience</a><a href="#about">About</a><a href="#approach">Approach</a><a href="#work">Work</a><a href="#skills">Skills</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
   </div>
@@ -391,53 +391,13 @@ document.addEventListener('click', function (e) {
   </div>
   <div class="stats rv" id="stats">
     <div class="stat"><div class="n" data-to="8" data-suffix="+">0</div><div class="l">Years across QA, automation and release ownership</div><span class="w">2018 &rarr; today</span></div>
-    <div class="stat"><div class="n" data-text="3 &rarr; 11">0</div><div class="l">Engineers in the QA function I scaled and now lead</div><span class="w">SuperAGI</span></div>
+    <div class="stat"><div class="n" data-to="11">0</div><div class="l">Engineers in the QA function I built, scaled and led</div><span class="w">SuperAGI</span></div>
     <div class="stat"><div class="n" data-to="1100" data-suffix="+" data-comma="1">0</div><div class="l">Issues surfaced in a company-wide Bug Bash I ran</div><span class="w">SuperAGI</span></div>
     <div class="stat"><div class="n" data-to="90" data-prefix="~" data-suffix="%">0</div><div class="l">Reduction in production issues across five years</div><span class="w">WebEngage</span></div>
     <div class="stat"><div class="n" data-to="80" data-prefix="~" data-suffix="%">0</div><div class="l">Reduction in production defects after the Bug Bash</div><span class="w">SuperAGI</span></div>
     <div class="stat"><div class="n" data-to="4">0</div><div class="l">Engineering pods gated on my release sign-off</div><span class="w">SuperAGI</span></div>
   </div>
  </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="rv">
-      <div class="eyebrow">About</div>
-      <h2>Automation depth, with the judgment<br>to know when not to automate.</h2>
-      <p class="lede">Eight years across AI-native SaaS, consumer mobile, and enterprise CRM/CLM. I've been the first QA hire twice and the sole release gatekeeper once &mdash; which means most of what I know came from building it wrong first, then fixing it. Three things I'd argue for in any team I join:</p>
-    </div>
-    <div class="prin">
-      <div class="pr rv"><div class="ic">&#9678;</div><h3>Assert data, not pixels</h3><p>Charts and dashboards get validated by intercepting the payload behind the visual &mdash; not by screenshotting it. Removes an entire class of brittle tests.</p>
-        <div class="ex"><div class="bad">compare_screenshot(chart, baseline.png)</div><div class="good">expect_response("**/api/metrics") &rarr; assert body</div></div></div>
-      <div class="pr rv"><div class="ic">&#9881;</div><h3>Kill flakiness at the source</h3><p>Test data goes through the API, not the UI. Most flakiness is a setup problem wearing a timing costume &mdash; waits and retries only hide it.</p>
-        <div class="ex"><div class="bad">click through 9 screens, then sleep(3)</div><div class="good">api.seed_campaign(state="live") in a fixture</div></div></div>
-      <div class="pr rv"><div class="ic">&#9707;</div><h3>Automate what pays</h3><p>Not everything deserves automation. Knowing where coverage earns its maintenance cost &mdash; and where exploratory testing finds more &mdash; is the actual skill.</p>
-        <div class="ex"><div class="bad">automate every edge case, maintain forever</div><div class="good">automate the regression path, explore the rest</div></div></div>
-    </div>
-
-    <div class="two rv" style="margin-top:44px;align-items:start">
-      <div>
-        <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">What I bring on day one</h3>
-        <ul class="plain">
-          <li><b>A release gate that holds.</b> Entry/exit criteria, defect SLAs, and a go/no-go call someone actually owns.</li>
-          <li><b>Automation that survives a refactor.</b> Component objects, API-driven data, contract validation at the schema boundary.</li>
-          <li><b>Reporting leadership reads.</b> Business-language results with evidence attached &mdash; not a wall of red in a CI log.</li>
-          <li><b>A QA team that grows.</b> I've hired, onboarded and mentored from 3 to 11 across 4 pods.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">Currently</h3>
-        <ul class="plain">
-          <li><b>Sole quality gatekeeper at SuperAGI</b> &mdash; every PR reviewed, every deployment owned.</li>
-          <li><b>Shipped and deployed <a href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Engage</a></b> &mdash; a multi-tenant engagement platform built from scratch as an automation target, on free-tier infrastructure.</li>
-          <li><b>Automating it in the open</b> &mdash; pytest and Playwright, parallel-safe from the first commit, with <a href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Allure reports published by CI</a> on every push.</li>
-          <li><b>Deepening Python automation</b> after years split across Java/Selenium and Python/Playwright.</li>
-          <li><b>Open to QA Lead and SDET roles</b> &mdash; Bangalore or remote, 15 days notice.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section id="experience">
@@ -564,6 +524,47 @@ document.addEventListener('click', function (e) {
   </div>
 </section>
 
+<section id="about">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">About</div>
+      <h2>From the first test case<br>to the release sign-off.</h2>
+      <p class="lede">Eight years, three products, and the same job each time &mdash; someone had to own quality and nobody did. I've written the first test case, built the framework it runs in, hired the team that maintains it, and made the call on whether we ship. Most of what I know came from building it wrong first and then having to fix it in production. Three things I'd argue for in any team I join:</p>
+    </div>
+    <div class="prin">
+      <div class="pr rv"><div class="ic">&#9678;</div><h3>Assert data, not pixels</h3><p>Charts and dashboards get validated by intercepting the payload behind the visual &mdash; not by screenshotting it. Removes an entire class of brittle tests.</p>
+        <div class="ex"><div class="bad">compare_screenshot(chart, baseline.png)</div><div class="good">expect_response("**/api/metrics") &rarr; assert body</div></div></div>
+      <div class="pr rv"><div class="ic">&#9881;</div><h3>Kill flakiness at the source</h3><p>Test data goes through the API, not the UI. Most flakiness is a setup problem wearing a timing costume &mdash; waits and retries only hide it.</p>
+        <div class="ex"><div class="bad">click through 9 screens, then sleep(3)</div><div class="good">api.seed_campaign(state="live") in a fixture</div></div></div>
+      <div class="pr rv"><div class="ic">&#9707;</div><h3>Automate what pays</h3><p>Not everything deserves automation. Knowing where coverage earns its maintenance cost &mdash; and where exploratory testing finds more &mdash; is the actual skill.</p>
+        <div class="ex"><div class="bad">automate every edge case, maintain forever</div><div class="good">automate the regression path, explore the rest</div></div></div>
+    </div>
+
+    <div class="two rv" style="margin-top:44px;align-items:start">
+      <div>
+        <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">What I bring on day one</h3>
+        <ul class="plain">
+          <li><b>A release gate that holds.</b> Entry/exit criteria, defect SLAs, and a go/no-go call someone actually owns.</li>
+          <li><b>Automation that survives a refactor.</b> Component objects, API-driven data, contract validation at the schema boundary.</li>
+          <li><b>Reporting leadership reads.</b> Business-language results with evidence attached &mdash; not a wall of red in a CI log.</li>
+          <li><b>QA team scaling.</b> Hiring, onboarding and mentoring across four pods &mdash; and the ownership model that lets each pod carry its own quality instead of routing everything through one person.</li>
+          <li><b>A way to test what doesn't repeat.</b> AI features don't return the same answer twice. You stop asserting exact output and start asserting properties &mdash; the same discipline async pipelines already demand.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin:0 0 14px;letter-spacing:-.02em">Currently</h3>
+        <ul class="plain">
+          <li><b>Sole quality gatekeeper at SuperAGI</b> &mdash; every PR reviewed, every deployment owned.</li>
+          <li><b>Shipped and deployed <a href="https://engage-web-09fg.onrender.com/" target="_blank" rel="noopener noreferrer">Engage</a></b> &mdash; a multi-tenant engagement platform built from scratch as an automation target, on free-tier infrastructure.</li>
+          <li><b>Automating it in the open</b> &mdash; pytest and Playwright, parallel-safe from the first commit, with <a href="https://mohammad-faisal-qa.github.io/engage-test-automation/" target="_blank" rel="noopener noreferrer">Allure reports published by CI</a> on every push.</li>
+          <li><b>Deepening Python automation</b> after years split across Java/Selenium and Python/Playwright.</li>
+          <li><b>Open to QA Lead and SDET roles</b> &mdash; Bangalore or remote, 15 days notice.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="approach">
   <div class="wrap">
     <div class="rv">
@@ -582,6 +583,7 @@ document.addEventListener('click', function (e) {
           <div class="cv rv"><b>Web UI</b><span>Playwright, Selenium</span></div>
           <div class="cv rv"><b>REST APIs</b><span>httpx, REST Assured</span></div>
           <div class="cv rv"><b>Mobile SDKs</b><span>iOS &amp; Android, Charles Proxy</span></div>
+          <div class="cv rv"><b>AI agent flows</b><span>non-deterministic output</span></div>
           <div class="cv rv"><b>Databases</b><span>SQL validation</span></div>
           <div class="cv rv"><b>Integrations</b><span>Salesforce, DocuSign, Shopify</span></div>
           <div class="cv rv"><b>Multi-channel</b><span>Push, Email, SMS, WhatsApp</span></div>
@@ -589,42 +591,6 @@ document.addEventListener('click', function (e) {
           <div class="cv rv"><b>Release gates</b><span>CI quality gates, sign-off</span></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="rv">
-      <div class="eyebrow">Skills</div>
-      <h2>What I work with.</h2>
-      <p class="lede">Highlighted items are what I reach for most.</p>
-    </div>
-    <div class="sgrid">
-      <div class="scard rv"><h3>Test Automation</h3><div class="chips">
-        <span class="chip hi">Python</span><span class="chip hi">Playwright</span><span class="chip hi">Pytest</span><span class="chip hi">pytest-bdd</span>
-        <span class="chip">Page Object Model</span><span class="chip">Service Object Model</span><span class="chip">Java</span><span class="chip">Selenium</span>
-        <span class="chip">Cucumber</span><span class="chip">Serenity BDD</span><span class="chip">TestNG</span><span class="chip">JUnit</span>
-        <span class="chip">REST Assured</span><span class="chip">httpx</span><span class="chip">Pydantic</span><span class="chip">pytest-xdist</span><span class="chip">Postman</span></div></div>
-      <div class="scard rv"><h3>CI/CD &amp; Reporting</h3><div class="chips">
-        <span class="chip hi">Jenkins</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
-        <span class="chip">AWS ECR</span><span class="chip">Git</span><span class="chip">ReportPortal</span><span class="chip">Allure</span>
-        <span class="chip">Serenity Reports</span><span class="chip">Slack integration</span><span class="chip">Parallel execution</span></div></div>
-      <div class="scard rv"><h3>Database &amp; Backend</h3><div class="chips">
-        <span class="chip hi">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">JSON schema validation</span>
-        <span class="chip">Payload validation</span><span class="chip">Webhook testing</span><span class="chip">Event ingestion</span></div></div>
-      <div class="scard rv"><h3>Testing Types</h3><div class="chips">
-        <span class="chip">Functional</span><span class="chip">Exploratory</span><span class="chip">End-to-End</span><span class="chip">Regression</span>
-        <span class="chip">API</span><span class="chip">Integration</span><span class="chip">Mobile SDK</span><span class="chip">Web SDK</span>
-        <span class="chip">Cross-browser</span><span class="chip">Release validation</span></div></div>
-      <div class="scard rv"><h3>Leadership &amp; Process</h3><div class="chips">
-        <span class="chip hi">QA team scaling</span><span class="chip hi">Release management</span><span class="chip">Hiring &amp; mentoring</span>
-        <span class="chip">STLC</span><span class="chip">Risk-based testing</span><span class="chip">Shift-left QA</span><span class="chip">Defect triage</span>
-        <span class="chip">RCA</span><span class="chip">Agile / Scrum</span><span class="chip">Stakeholder reporting</span></div></div>
-      <div class="scard rv"><h3>Domains</h3><div class="chips">
-        <span class="chip">AI-native CRM</span><span class="chip">Marketing automation</span><span class="chip">Consumer mobile</span>
-        <span class="chip">Contract lifecycle (CLM)</span><span class="chip">Salesforce</span><span class="chip">E-commerce</span>
-        <span class="chip">Multi-tenant SaaS</span></div></div>
     </div>
   </div>
 </section>
@@ -753,8 +719,44 @@ document.addEventListener('click', function (e) {
       </div>
 
     </div>
-    <div class="rv" style="margin-top:26px;text-align:center">
-      <button class="btn" id="bugBtn">Read a sample incident report &mdash; SEV-1, with RCA and detection gap</button>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">Skills</div>
+      <h2>What I work with.</h2>
+      <p class="lede">Highlighted items are what I reach for most.</p>
+    </div>
+    <div class="sgrid">
+      <div class="scard rv"><h3>Test Automation</h3><div class="chips">
+        <span class="chip hi">Python</span><span class="chip hi">Playwright</span><span class="chip hi">Pytest</span><span class="chip hi">pytest-bdd</span>
+        <span class="chip">Page Object Model</span><span class="chip">Service Object Model</span><span class="chip">Java</span><span class="chip">Selenium</span>
+        <span class="chip">Cucumber</span><span class="chip">Serenity BDD</span><span class="chip">TestNG</span><span class="chip">JUnit</span>
+        <span class="chip">REST Assured</span><span class="chip">httpx</span><span class="chip">Pydantic</span><span class="chip">pytest-xdist</span><span class="chip">Postman</span></div></div>
+      <div class="scard rv"><h3>CI/CD &amp; Reporting</h3><div class="chips">
+        <span class="chip hi">Jenkins</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
+        <span class="chip">AWS ECR</span><span class="chip">Git</span><span class="chip">ReportPortal</span><span class="chip">Allure</span>
+        <span class="chip">Serenity Reports</span><span class="chip">Slack integration</span><span class="chip">Parallel execution</span></div></div>
+      <div class="scard rv"><h3>Database &amp; Backend</h3><div class="chips">
+        <span class="chip hi">SQL</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">JSON schema validation</span>
+        <span class="chip">Payload validation</span><span class="chip">Webhook testing</span><span class="chip">Event ingestion</span></div></div>
+      <div class="scard rv"><h3>AI-Native QA</h3><div class="chips">
+        <span class="chip hi">Testing agent workflows</span><span class="chip hi">Non-deterministic assertions</span><span class="chip hi">AI-assisted test authoring</span>
+        <span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">Property-based checks</span>
+        <span class="chip">Response &amp; payload validation</span><span class="chip">Async / eventual consistency</span></div></div>
+      <div class="scard rv"><h3>Testing Types &amp; Domains</h3><div class="chips">
+        <span class="chip">Functional</span><span class="chip">Exploratory</span><span class="chip">End-to-End</span><span class="chip">Regression</span>
+        <span class="chip">API</span><span class="chip">Integration</span><span class="chip">Mobile SDK</span><span class="chip">Web SDK</span>
+        <span class="chip">Cross-browser</span><span class="chip">Release validation</span>
+        <span class="chip">AI-native CRM</span><span class="chip">Marketing automation</span><span class="chip">Consumer mobile</span>
+        <span class="chip">Contract lifecycle (CLM)</span><span class="chip">Salesforce</span><span class="chip">E-commerce</span>
+        <span class="chip">Multi-tenant SaaS</span></div></div>
+      <div class="scard rv"><h3>Leadership &amp; Process</h3><div class="chips">
+        <span class="chip hi">QA team scaling</span><span class="chip hi">Release management</span><span class="chip">Hiring &amp; mentoring</span>
+        <span class="chip">STLC</span><span class="chip">Risk-based testing</span><span class="chip">Shift-left QA</span><span class="chip">Defect triage</span>
+        <span class="chip">RCA</span><span class="chip">Agile / Scrum</span><span class="chip">Stakeholder reporting</span></div></div>
     </div>
   </div>
 </section>
@@ -784,37 +786,6 @@ document.addEventListener('click', function (e) {
     <p class="fine">The portfolio project on this site is personal work built to demonstrate framework design &mdash; not affiliated with any employer.<br>&copy; 2026 Mohammad Faisal &middot; Built by hand, tested by habit.</p>
   </div>
 </footer>
-
-<div class="mask" id="mask">
-  <div class="modal">
-    <div class="mhead"><span class="sev">SEV-1</span><h3>INC-2291 &mdash; Duplicate push delivery on webhook retry</h3><button class="x" id="mx">&times;</button></div>
-    <div class="mbody">
-      <div class="mstats">
-        <div class="mstat"><b>42,800</b><span>users affected</span></div>
-        <div class="mstat"><b>18 min</b><span>time to detect</span></div>
-        <div class="mstat"><b>51 min</b><span>time to mitigate</span></div>
-        <div class="mstat"><b>3</b><span>client escalations</span></div>
-      </div>
-      <dl style="margin:0">
-        <div class="mrow"><dt>Summary</dt><dd>A campaign delivery webhook was retried by the upstream provider after a gateway timeout. Because the consumer keyed deduplication on <code>campaign_id</code> rather than <code>delivery_id</code>, the retry was treated as a fresh dispatch and the entire audience received the push a second time.</dd></div>
-        <div class="mrow"><dt>Blast radius</dt><dd>42,800 end users across 3 enterprise accounts, one of which had a contractual frequency cap of one push per user per day. Reputational, not financial &mdash; but a contract-breaching event for that account.</dd></div>
-        <div class="mrow"><dt>Detection</dt><dd>Not caught by the suite. Flagged by a delivery-volume anomaly alert 18 minutes in, after a client had already noticed.</dd></div>
-        <div class="mrow"><dt>Reproduction</dt><dd>Deterministic once understood: dispatch a campaign, force a 504 on the provider callback, allow the provider's retry, then compare <code>delivery_receipts</code> count against audience size. Ratio is 2:1.</dd></div>
-        <div class="mrow"><dt>Root cause</dt><dd>The idempotency check existed but used the wrong key. <code>campaign_id</code> is stable across retries by design, so every retry looked like a legitimate new send. The bug was in the semantics of the key, not in the presence of the guard &mdash; which is exactly why code review missed it too.</dd></div>
-        <div class="mrow"><dt>Why testing<br>missed it</dt><dd><div class="gap"><b>This is the part that mattered more than the fix.</b> Our webhook tests asserted the happy path and the failure path, but never the <em>retry</em> path &mdash; we had no test that delivered the same payload twice. Idempotency was assumed rather than verified, across every consumer we owned, not just this one.</div></dd></div>
-        <div class="mrow"><dt>Containment</dt><dd>Paused the affected campaigns, suppressed re-delivery at the gateway, and notified the three accounts before their end-of-day reporting ran &mdash; ahead of them asking.</dd></div>
-        <div class="mrow"><dt>Fix</dt><dd>Deduplication re-keyed to <code>delivery_id</code>, with a persisted idempotency record and a TTL matched to the provider's maximum retry window.</dd></div>
-        <div class="mrow"><dt>Coverage<br>added</dt><dd><ol>
-          <li>Duplicate-payload test for <b>every</b> webhook consumer, not just this one &mdash; same payload twice, assert exactly one side effect</li>
-          <li>Contract test asserting the idempotency key is the per-delivery identifier, so a future rename fails loudly</li>
-          <li>Delivery-count invariant added to the campaign regression pack: receipts must equal audience size</li>
-        </ol></dd></div>
-        <div class="mrow"><dt>Severity vs<br>priority</dt><dd><b>SEV-1</b> because it breached a contractual delivery guarantee and users could not opt out of the second message. <b>P0</b> because the retry window meant it could recur on any campaign at any time. Severity describes the damage; priority describes the urgency &mdash; keeping them separate is what stops triage becoming a negotiation.</dd></div>
-        <div class="mrow"><dt>Follow-ups</dt><dd>Idempotency added to the definition of done for any new webhook consumer, and a standing agenda item in design review. The single-incident fix is cheap; the class of bug is what you actually want to close.</dd></div>
-      </dl>
-    </div>
-  </div>
-</div>
 
 <script>
 const prog=document.getElementById('prog'),navEl=document.getElementById('nav');
@@ -991,11 +962,6 @@ document.querySelectorAll('.pj,.tile').forEach(c=>c.addEventListener('mousemove'
 }));
 
 // modal
-const mask=document.getElementById('mask');
-document.getElementById('bugBtn').onclick=()=>mask.classList.add('on');
-document.getElementById('mx').onclick=()=>mask.classList.remove('on');
-mask.onclick=e=>{if(e.target===mask)mask.classList.remove('on')};
-addEventListener('keydown',e=>{if(e.key==='Escape')mask.classList.remove('on')});
 
 // active nav
 const nio=new IntersectionObserver(es=>es.forEach(e=>{
